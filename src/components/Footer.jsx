@@ -1,7 +1,9 @@
 function Footer() {
   return (
     <>
-      <p>Footer</p>
+      <div className="border border-blue-500">
+        <p>Footer</p>
+      </div>
     </>
   );
 }

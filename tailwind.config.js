@@ -5,6 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    extend: {
+      colors: {
+        'porange' : '#ffa31a',
+        'pgrey': '#808080',
+        'pdark-grey': '#292929',
+        'pdark': '#1b1b10'
+      }
+    },
     screens: {
       'tablet': '640px',
       // => @media (min-width: 640px) { ... }
