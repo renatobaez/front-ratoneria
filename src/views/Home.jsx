@@ -1,13 +1,16 @@
+import Carousel from "../components/ui/Carousel";
 function Home() {
+  let slides = [
+    "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
+    "https://wallpapercave.com/wp/wp3386769.jpg",
+    "https://wallpaperaccess.com/full/809523.jpg",
+    "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
+  ];
+
   return (
     <>
-      <p>Home</p>
-      <p>Variables de colores en el archivo tailwind.config.js</p>
-      <div className="flex">
-        <div className="w-10 h-20 bg-porange mr-2"></div>
-        <div className="w-10 h-20 bg-pgrey mr-2"></div>
-        <div className="w-10 h-20 bg-pdark-grey mr-2"></div>
-        <div className="w-10 h-20 bg-pdark"></div>
+      <div className="w-[60%] m-auto pt-11">
+        <Carousel slides={slides} />
       </div>
     </>
   );
