@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
-  const [showLinks, setShowLinks] = useState(false);
+  const [showLinks, setShowLinks] = useState(window.innerWidth > 1024); // Inicialización según el ancho de la ventana
   const location = useLocation();
 
   const toggleLinks = () => {
