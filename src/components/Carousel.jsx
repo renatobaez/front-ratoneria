@@ -17,7 +17,7 @@ export default function Carousel({ slides }) {
   };
 
   return (
-    <div className="overflow-hidden relative">
+    <div className="overflow-hidden relative h-full">
       <div
         className={`flex transition ease-out duration-40`}
         style={{
