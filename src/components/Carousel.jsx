@@ -25,7 +25,7 @@ export default function Carousel({ slides }) {
         }}
       >
         {slides.map((s) => {
-          return <img src={s} />;
+          return <img src={s} alt="imagen promocional" />;
         })}
       </div>
 
