@@ -1,14 +1,14 @@
 import { useState } from "react"
 
 function Register() {
-  const [isPasswordHidden, setPasswordHidden] = useState(true)
-  return (
+    const [isPasswordHidden, setPasswordHidden] = useState(true)
+    return (
     <>
     <div className="flex flex-col items-center mt-5 border-2 bg-porange border-pdark w-1/2 mx-auto" >
-      <h1 className="text-3xl font-bold">CREA TU CUENTA</h1>
-      <h2 className="text-xl">INGRESE SUS DATOS</h2>
-      </div>
-      <div className="relative max-w-xs w-full mt-5 mb-5 mx-auto md:mx-0 lg:mx-0 xl:mx-0 2xl:mx-0  -500 ">
+    <h1 className="text-3xl font-bold">CREA TU CUENTA</h1>
+    <h2 className="text-xl">INGRESE SUS DATOS</h2>
+    </div>
+    <div className="relative max-w-xs w-full mt-5 mb-5 mx-auto md:mx-0 lg:mx-0 xl:mx-0 2xl:mx-0  -500 ">
             <input
                 type="text"
                 placeholder="Nombre y Apellido"
@@ -79,11 +79,11 @@ function Register() {
         </div >
         <div className="flex flex-col items-center">
         <button className="   px-7 py-3.5 text-white bg-porange hover:bg-porange-600 rounded-lg shadow-md focus:shadow-none duration-100 ring-offset-2 ring-indigo-600 focus:ring-2">
-               Crear Cuenta
+            Crear Cuenta
             </button>
             </div>
     </>
-  );
+);
 }
 
 export default Register;

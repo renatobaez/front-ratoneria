@@ -1,7 +1,8 @@
+// eslint-disable-next-line react/prop-types
 function Button({ children, onClick }) {
   return (
     <button
-      className="px-3 py-1.5 text-pdark duration-150 bg-porange rounded-lg hover:bg-pgrey active:shadow-lg"
+      className="px-3 py-1.5 text-pdark duration-150 bg-porange rounded-lg hover:bg-pgrey active:shadow-lg text-white"
       onClick={onClick}
     >
       {children}

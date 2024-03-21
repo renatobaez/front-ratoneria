@@ -1,7 +1,9 @@
+import Avatar from "../components/Avatar";
+
 function Profile() {
   return (
     <>
-      <p>Profile</p>
+    <Avatar></Avatar>
     </>
   );
 }
