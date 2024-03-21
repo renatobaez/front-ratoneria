@@ -1,4 +1,4 @@
-import Carousel from "../components/ui/Carousel";
+import Carousel from "../components/Carousel";
 function Home() {
   let slides = [
     "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
