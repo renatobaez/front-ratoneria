@@ -9,7 +9,7 @@ function Home() {
 
   return (
     <>
-      <div className="w-[60%] m-auto pt-11">
+      <div className="m-auto pt-11 mobile:w-full tablet:w-[60%]">
         <Carousel slides={slides} />
       </div>
     </>
