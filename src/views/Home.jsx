@@ -9,7 +9,7 @@ function Home() {
 
   return (
     <>
-      <div className=" mt-5 m-auto pt-11 sm:w-full md:w-[60%] md:h-64 border border-red-500">
+      <div className=" mt-5 m-auto pt-11 sm:w-full md:w-[60%] md:h-64">
         <Carousel slides={slides} />
       </div>
     </>
