@@ -9,4 +9,5 @@ body {
 .bg-custom-background {
   background-image: url('./bg_ratoneria.jpeg');
   background-size: cover;
+  background-repeat: no-repeat;
 }
