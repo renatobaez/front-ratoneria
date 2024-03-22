@@ -4,7 +4,7 @@ function Register() {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
   return (
     <>
-      <div className="w-full h-screen bg-custom-background">
+      <div className="w-full h-screen bg-custom-background text-white">
         <div className="relative max-w-xs w-full mt-20 mb-5 mx-auto">
           <div className="w-full text-center bg-porange outline-none border focus:border-red shadow-sm rounded-lg mb-2">
             <h1 className="text-3xl text-white">CREA TU CUENTA</h1>
@@ -13,17 +13,17 @@ function Register() {
           <input
             type="text"
             placeholder="Nombre"
-            className="w-full pr-12 pl-3 py-2 color-white bg-pgrey outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
+            className="w-full pr-12 pl-3 py-2 placeholder:text-gray-100 bg-pgrey outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
           />
            <input
             type="text"
             placeholder="Apellido"
-            className="w-full pr-12 pl-3 py-2 color-white bg-pgrey outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
+            className="w-full pr-12 pl-3 py-2  placeholder:text-gray-100 bg-pgrey outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
           />
           <input
             type="text"
             placeholder="Nickname"
-            className="w-full pr-12 pl-3 py-2 text-white-500 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
+            className="w-full pr-12 pl-3 py-2 placeholder:text-gray-100 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
           />
           <div className="relative max-w-xs">
             <svg
@@ -43,7 +43,7 @@ function Register() {
             <input
               type="text"
               placeholder="Enter your email"
-              className="w-full pr-12 pl-3 py-2  bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
+              className="w-full pr-12 pl-3 py-2 placeholder:text-gray-100 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
             />
           </div>
           <div className="relative max-w-xs  ">
@@ -91,7 +91,7 @@ function Register() {
             <input
               type={isPasswordHidden ? "password" : "text"}
               placeholder="Contraseña"
-              className="w-full pr-12 pl-3 py-2 text-gray-500 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
+              className="w-full pr-12 pl-3 py-2 placeholder:text-gray-100 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
             />
           </div>
           <div className="relative max-w-xs ">
@@ -139,12 +139,12 @@ function Register() {
             <input
               type={isPasswordHidden ? "password" : "text"}
               placeholder="Confirmar Contraseña"
-              className="w-full pr-12 pl-3 py-2 text-gray-500 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
+              className="w-full pr-12 pl-3 py-2  placeholder:text-gray-100 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
             />
           </div>
         </div>
         <div className="flex flex-col items-center">
-          <button className="   px-7 py-3.5 text-white bg-porange hover:bg-porange-600 rounded-lg shadow-md focus:shadow-none duration-100 ring-offset-2 ring-indigo-600 focus:ring-2">
+          <button className="px-7 py-3.5 text-white bg-porange hover:bg-porange-600 rounded-lg shadow-md focus:shadow-none duration-100 ring-offset-2 ring-indigo-600 focus:ring-2">
             Crear Cuenta
           </button>
         </div>
