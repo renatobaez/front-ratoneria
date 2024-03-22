@@ -12,17 +12,22 @@ function Register() {
           </div>
           <input
             type="text"
-            placeholder="Nombre y Apellido"
-            className="w-full pl-12 pr-3 py-2 color-white bg-pgrey outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
+            placeholder="Nombre"
+            className="w-full pr-12 pl-3 py-2 color-white bg-pgrey outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
+          />
+           <input
+            type="text"
+            placeholder="Apellido"
+            className="w-full pr-12 pl-3 py-2 color-white bg-pgrey outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
           />
           <input
             type="text"
             placeholder="Nickname"
-            className="w-full pl-12 pr-3 py-2 text-white-500 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
+            className="w-full pr-12 pl-3 py-2 text-white-500 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
           />
           <div className="relative max-w-xs">
             <svg
-              className="w-6 h-6 text-gray-400 absolute left-3 inset-y-0 my-auto"
+              className="w-6 h-6 text-gray-400 absolute right-3 inset-y-0 my-auto"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -38,10 +43,10 @@ function Register() {
             <input
               type="text"
               placeholder="Enter your email"
-              className="w-full pl-12 pr-3 py-2  bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
+              className="w-full pr-12 pl-3 py-2  bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
             />
           </div>
-          <div className="relative max-w-xs ">
+          <div className="relative max-w-xs  ">
             <button
               className="text-gray-400 absolute right-3 inset-y-0 my-auto active:text-gray-600"
               onClick={() => setPasswordHidden(!isPasswordHidden)}
@@ -134,7 +139,7 @@ function Register() {
             <input
               type={isPasswordHidden ? "password" : "text"}
               placeholder="Confirmar Contraseña"
-              className="w-full pr-12 pl-3 py-2 text-gray-500 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg"
+              className="w-full pr-12 pl-3 py-2 text-gray-500 bg-pgrey outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
             />
           </div>
         </div>
