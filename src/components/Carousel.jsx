@@ -1,57 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BsFillArrowRightCircleFill,
   BsFillArrowLeftCircleFill,
 } from "react-icons/bs";
+
 export default function Carousel({ slides }) {
-  let [current, setCurrent] = useState(0);
-
-  let previousSlide = () => {
-    if (current === 0) setCurrent(slides.length - 1);
-    else setCurrent(current - 1);
+  const [current, setCurrent] = useState(0);
+  const nextSlide = () => {
+    setCurrent((current + 1) % slides.length);
   };
 
-  let nextSlide = () => {
-    if (current === slides.length - 1) setCurrent(0);
-    else setCurrent(current + 1);
+  const previousSlide = () => {
+    setCurrent(current === 0 ? slides.length - 1 : current - 1);
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [current]);
 
   return (
-    <div className="overflow-hidden relative h-full">
+    <div className="overflow-hidden relative h-250 w-1180">
       <div
-        className={`flex transition ease-out duration-40`}
+        className="flex transition ease-out duration-400"
         style={{
           transform: `translateX(-${current * 100}%)`,
         }}
       >
-        {slides.map((s) => {
-          return <img src={s} alt="imagen promocional" />;
-        })}
+        {slides.map((s, index) => (
+          <img
+            key={index}
+            src={s}
+            alt="imagen promocional"
+            className="w-1180 h-250 object-cover"
+          />
+        ))}
       </div>
 
-      <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
+      <div className="absolute top-0 h-full w-full flex justify-between items-center text-black px-10 text-3xl">
         <button onClick={previousSlide}>
           <BsFillArrowLeftCircleFill />
         </button>
         <button onClick={nextSlide}>
           <BsFillArrowRightCircleFill />
         </button>
-      </div>
-
-      <div className="absolute bottom-0 py-4 flex justify-center gap-3 w-full">
-        {slides.map((s, i) => {
-          return (
-            <div
-              onClick={() => {
-                setCurrent(i);
-              }}
-              key={"circle" + i}
-              className={`rounded-full w-5 h-5 cursor-pointer  ${
-                i == current ? "bg-white" : "bg-gray-500"
-              }`}
-            ></div>
-          );
-        })}
       </div>
     </div>
   );

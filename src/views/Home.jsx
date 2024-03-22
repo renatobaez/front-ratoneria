@@ -3,10 +3,10 @@ import Sidebar from "../components/Sidebar";
 import Searchbar from "../components/ui/Searchbar";
 function Home() {
   let slides = [
-    "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
-    "https://wallpapercave.com/wp/wp3386769.jpg",
-    "https://wallpaperaccess.com/full/809523.jpg",
-    "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
+    "https://dummyimage.com/1180x250/ffffff/000000",
+    "https://dummyimage.com/1180x250/ffffff/000000",
+    "https://dummyimage.com/1180x250/ffffff/000000",
+    "https://dummyimage.com/1180x250/ffffff/000000",
   ];
 
   return (
