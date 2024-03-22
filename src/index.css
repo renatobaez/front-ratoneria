@@ -5,3 +5,8 @@
 body {
   font-family: 'Rajdhani', sans-serif;
 }
+
+.bg-custom-background {
+  background-image: url('./ratoneria_png_b_-.png');
+  background-size: 80%;
+}
