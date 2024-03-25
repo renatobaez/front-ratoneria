@@ -13,7 +13,7 @@ const Footer = () => {
     <footer className="bg-pdark-grey text-white font-sans text-xs sm:text-sm py-1 px-4 border-b border-gray-400">
       <div className="max-w-lg mx-auto flex justify-center items-center">
         <div className="flex items-center">
-          <img src="https://i.ibb.co/chKMvGK/image.jpg" className="w-8 mr-2" alt="Logo La RatonerIA" />
+          <img src="https://i.ibb.co/Qf7cfXH/image.jpg" className="w-8 mr-2" alt="Logo La RatonerIA" />
           <p className="leading-relaxed text-[12px] sm:text-xs lg:text-sm max-w-xs sm:max-w-none">
             ¿Buscas calidad? nosotros buscamos precios ratones.
           </p>
