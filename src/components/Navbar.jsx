@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-//test
+
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
 
   const navigation = [];
 
-  // Determinar qué botón está activo basado en la ruta actual no oude hacerlo con lo que venìa en el componente
   const activeButton = location.pathname === "/login" ? "login" : "register";
 
   return (
@@ -19,12 +18,11 @@ const Navbar = () => {
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
             <img
-              src="https://i.ibb.co/chKMvGK/image.jpg"
+              src="https://i.ibb.co/Qf7cfXH/image.jpg" // Cambié la URL del logo
               width={120}
               height={50}
               alt="Logo La RatonerIA"
             />
-            {/* Ocultar el título en pantallas pequeñas lo puse solo en menores a sm*/}
             <h1 className="text-xl font-semibold ml-2 hidden sm:block">
               La RatonerIA
             </h1>
