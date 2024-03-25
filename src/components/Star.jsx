@@ -1,11 +1,12 @@
+/* eslint-disable react/jsx-key */
 import { useState } from "react";
-import { FaStar } from "react-icon/fa";
+import { FaStar } from "react-icons/fa";
 //commit fix
 function Star() {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   return (
-    <div>
+    <div className="flex flex-row justify-center mb-3">
       {[...Array(5)].map((star, index) => {
         const currentRating = index + 1;
         return (
@@ -19,7 +20,7 @@ function Star() {
             />
             <FaStar
               className="cursor-pointer"
-              size={50}
+              size={35}
               color={currentRating <= (hover || rating) ? "porange" : "pgrey"}
               onMouseEnter={() => setHover(currentRating)}
               onMouseLeave={() => setHover(null)}
