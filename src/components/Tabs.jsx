@@ -18,7 +18,7 @@ function Tabs() {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
 
     return (
-        <div >
+        <div className="ml-5">
         <div className="flex gap-3 ml-4">
         {tabsData.map((tab, idx) => {
             return (
