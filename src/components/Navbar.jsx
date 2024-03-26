@@ -44,7 +44,7 @@ const Navbar = () => {
               activeButton === "login" ? "bg-porange" : ""
             }`}
           >
-            Login
+            Iniciar Sesión
           </Link>
           <Link
             to="/register"
@@ -52,7 +52,7 @@ const Navbar = () => {
               activeButton === "register" ? "bg-porange" : ""
             }`}
           >
-            Register
+            Registrarse
           </Link>
         </div>
         <div className="md:hidden">
