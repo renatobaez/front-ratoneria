@@ -25,6 +25,9 @@ export default {
       'xl': '1280px',
       // => @media (min-width: 1280px) { ... }
     },
+    backgroundImage: {
+      'bg-ratoneria': "url('public/bg_ratoneriac.jpg')",
+    }
   },
   plugins: [],
 }
