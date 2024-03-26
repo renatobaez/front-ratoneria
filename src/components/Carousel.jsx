@@ -22,7 +22,7 @@ export default function Carousel({ slides }) {
   }, [current]);
 
   return (
-    <div className="overflow-hidden relative">
+    <div className="lg:w-[50%] mx-auto overflow-hidden relative border-5 rounded-lg shadow-xl">
       <div
         className="flex transition ease-out duration-400"
         style={{

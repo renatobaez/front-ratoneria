@@ -7,58 +7,17 @@ import Gallery from "../components/Gallery";
 
 function Home() {
   let slides = [
-    "https://dummyimage.com/1180x250/ffffff/000000",
-    "https://dummyimage.com/1180x250/ffffff/000000",
-    "https://dummyimage.com/1180x250/ffffff/000000",
-    "https://dummyimage.com/1180x250/ffffff/000000",
+    "https://www.arenamultiespacio.com/wp-content/uploads/2020/07/CARRUSEL-WEB-MEGABOX-2-BURGERS-1240x700-v34.jpg",
+    "https://www.arenamultiespacio.com/wp-content/uploads/2020/07/CARRUSEL-WEB-MEGABOX-2-BURGERS-1240x700-v34.jpg",
+    "https://www.arenamultiespacio.com/wp-content/uploads/2020/07/CARRUSEL-WEB-MEGABOX-2-BURGERS-1240x700-v34.jpg",
+    "https://www.arenamultiespacio.com/wp-content/uploads/2020/07/CARRUSEL-WEB-MEGABOX-2-BURGERS-1240x700-v34.jpg",
   ];
 
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarExpanded(!isSidebarExpanded);
-  };
-
-  const closeSidebar = () => {
-    setIsSidebarExpanded(false);
-  };
-
   return (
-    <div className="flex sm:w-full relative border-2">
-      <div
-        className={`w-1/6 bg-pgrey ${
-          isSidebarExpanded ? "block" : "w-12"
-        } md:block sm:absolute top-0 left-0 h-full z-10 transition-all duration-300`}
-      >
-        <div
-          className="flex flex-col justify-center h-full cursor-pointer"
-          onClick={toggleSidebar}
-        >
-          <span className="text-white text-sm font-semibold px-2 transform -rotate-90">
-            FILTROS
-          </span>
-        </div>
-      </div>
-      {isSidebarExpanded && (
-        <div className="w-1/6 bg-porange md:block sm:absolute top-0 left-0 h-full z-10 transition-all duration-300 relative">
-          <Sidebar />
-          <button
-            className="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 text-white rotate-90"
-            onClick={closeSidebar}
-          >
-            Cerrar Filtros
-          </button>
-        </div>
-      )}
-      <div className="w-3/4 sm:w-full relative flex flex-col items-center overflow-x-auto">
-        <div className="mb-4 sm:w-[full] p-5">
-          <div className="mt-5 m-auto pt-11 md:w-[80%] md:h-64">
-            <Carousel slides={slides} />
-          </div>
-          <Searchbar />
-        </div>
-        <Gallery />
-      </div>
+    <div className="flex flex-col lg:w-[80%] lg:p-10 w-full mx-auto relative mb-10 mt-10">
+      <Carousel slides={slides} />
+      <Searchbar />
+      <Gallery />
     </div>
   );
 }
