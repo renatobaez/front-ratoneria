@@ -21,7 +21,7 @@ function Star() {
             <FaStar
               className="cursor-pointer"
               size={35}
-              color={currentRating <= (hover || rating) ? "porange" : "pgrey"}
+              color={currentRating <= (hover || rating) ? "#ffa31a" : "#808080"}
               onMouseEnter={() => setHover(currentRating)}
               onMouseLeave={() => setHover(null)}
             />
