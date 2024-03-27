@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="bg-[#151515]  font-sans text-xl py-2 px-4"
+      className="bg-pdark-grey  font-sans text-xl py-2 px-4"
       style={{ fontFamily: "Rajdhani, sans-serif" }}
     >
       <div className="flex items-center justify-between max-w-screen-xl mx-auto">

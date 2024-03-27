@@ -9,7 +9,7 @@ export default {
       colors: {
         'porange' : '#ff9000',
         'pgrey': 'rgba(67, 59, 54, .9)',
-        'pdark-grey': '#292929',
+        'pdark-grey': '#151515',
         'pdark': '#1b1b10'
       }
     },
