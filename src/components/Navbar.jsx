@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="bg-pdark-grey text-white font-sans text-xl py-2 px-4 border-b border-gray-400"
+      className="bg-[#151515]  font-sans text-xl py-2 px-4"
       style={{ fontFamily: "Rajdhani, sans-serif" }}
     >
       <div className="flex items-center justify-between max-w-screen-xl mx-auto">
@@ -23,9 +23,14 @@ const Navbar = () => {
               height={50}
               alt="Logo La RatonerIA"
             />
-            <h1 className="text-xl font-semibold ml-2 hidden sm:block">
-              La RatonerIA
-            </h1>
+            <div className="flex gap-2 items-center">
+              <h1 className=" text-white lg:text-[50px]  text-[40px] font-semibold ml-2 hidden sm:block">
+                LA RATONER
+              </h1>
+              <div className="  font-bold bg-porange lg:text-[50px] text-[45px] rounded-sm">
+                <h1 className="p-2">IA</h1>
+              </div>
+            </div>
           </Link>
         </div>
         <div className="hidden md:flex md:items-center md:ml-auto">
@@ -44,15 +49,15 @@ const Navbar = () => {
               activeButton === "login" ? "bg-porange" : ""
             }`}
           >
-            Iniciar Sesión
+            INICIAR SESION
           </Link>
           <Link
             to="/register"
-            className={`text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1 ${
+            className={`font-bold text-black hover:text-indigo-600 text-[20px] rounded-sm p-2 ${
               activeButton === "register" ? "bg-porange" : ""
             }`}
           >
-            Registrarse
+            REGISTRARSE
           </Link>
         </div>
         <div className="md:hidden">
@@ -93,7 +98,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className={`md:hidden ${showMenu ? "block" : "hidden"}`}>
-        <div className="flex flex-col items-center">
+        <div className="flex items-center justify-center">
           {navigation.map((item, idx) => (
             <a
               key={idx}
@@ -105,19 +110,19 @@ const Navbar = () => {
           ))}
           <Link
             to="/login"
-            className={`text-white hover:text-indigo-600 my-2 rounded-md px-3 py-1 ${
+            className={`text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1 ${
               activeButton === "login" ? "bg-porange" : ""
             }`}
           >
-            Login
+            INICIAR SESION
           </Link>
           <Link
             to="/register"
-            className={`text-white hover:text-indigo-600 my-2 rounded-md px-3 py-1 ${
+            className={`font-bold text-black hover:text-indigo-600 text-[20px] rounded-sm p-2 ${
               activeButton === "register" ? "bg-porange" : ""
             }`}
           >
-            Register
+            REGISTRARSE
           </Link>
         </div>
       </div>
