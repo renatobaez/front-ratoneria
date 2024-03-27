@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'porange' : '#ffa31a',
-        'pgrey': '#808080',
+        'porange' : '#ff9000',
+        'pgrey': 'rgba(67, 59, 54, .9)',
         'pdark-grey': '#292929',
         'pdark': '#1b1b10'
       }
