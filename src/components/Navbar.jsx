@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-
+// images
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
