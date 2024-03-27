@@ -24,7 +24,7 @@ const Navbar = () => {
               alt="Logo La RatonerIA"
             />
             <div className="flex gap-2 items-center">
-              <h1 className=" text-white lg:text-[50px]  text-[40px] font-semibold ml-2 hidden sm:block">
+              <h1 className=" text-white lg:text-[50px]  text-[33px] font-semibold ml-2 hidden sm:block">
                 LA RATONER
               </h1>
               <div className="  font-bold bg-porange lg:text-[50px] text-[45px] rounded-sm">
