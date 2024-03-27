@@ -14,17 +14,16 @@ const Navbar = () => {
       className="bg-pdark-grey  font-sans text-xl py-2 px-4"
       style={{ fontFamily: "Rajdhani, sans-serif" }}
     >
-      <div className="flex items-center justify-between max-w-screen-xl mx-auto">
+      <div className="flex items-center justify-evenly max-w-screen-xl mx-auto">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
             <img
+              className="lg:w-[150px] w-[100px]"
               src="https://i.ibb.co/Qf7cfXH/image.jpg" // Cambié la URL del logo
-              width={120}
-              height={50}
               alt="Logo La RatonerIA"
             />
             <div className="flex gap-2 items-center">
-              <h1 className=" text-white lg:text-[50px]  text-[33px] font-semibold ml-2 hidden sm:block">
+              <h1 className=" text-white lg:text-[50px]  text-[24px] font-semibold ml-2 hidden sm:block">
                 LA RATONER
               </h1>
               <div className="  font-bold bg-porange lg:text-[50px] text-[45px] rounded-sm">
