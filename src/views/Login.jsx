@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useSetUser } from "../context/UserProvider";
-import { jwt_decode } from "jwt-decode";
+//import { jwtDecode } from "jwt-decode";
 
 function Login() {
   //verifica si muestra o no el password
@@ -15,7 +15,8 @@ function Login() {
 
   const onSuccess = (res) => {
     localStorage.setItem("profileObj", JSON.stringify(res));
-    const token = jwt_decode(res.credential);
+    const token = jwtDecode(res.credential);
+    //const token = res;
     console.log(token)
     setUser(toke.name, token.email, token.nickname, token.picture)
     window.location.href = "/profile";
@@ -28,7 +29,7 @@ function Login() {
     if (localStorage.getItem("profileObj")) {
       //window.location.href = "/profile";
     }
-  }, [userContext]);
+  }, [0]);
   return (
     <div className="flex h-screen">
       <section
