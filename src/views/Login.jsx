@@ -1,29 +1,34 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { useSetUser } from "../context/UserProvider";
+import { jwt_decode } from "jwt-decode";
 
 function Login() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [profileObj, setProfileObj] = useState({});
+  //verifica si muestra o no el password
   const [isPasswordHidden, setPasswordHidden] = useState(true);
+  //Asignar el registro de usuario al userContext
+  const setUser = useSetUser();
+  //token de google para incicar sesion
   const clientID =
     "959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com";
+
   const onSuccess = (res) => {
-    setIsLoggedIn(true);
     localStorage.setItem("profileObj", JSON.stringify(res));
-    setProfileObj(res);
+    const token = jwt_decode(res.credential);
+    console.log(token)
+    setUser(toke.name, token.email, token.nickname, token.picture)
     window.location.href = "/profile";
   };
   const onFailure = (res) => {
-    setIsLoggedIn(false);
-    setProfileObj({});
+    setUser("", "", "", "");
     console.log("Login failed: res:", res);
   };
   useEffect(() => {
     if (localStorage.getItem("profileObj")) {
       //window.location.href = "/profile";
     }
-  }, [isLoggedIn]);
+  }, [userContext]);
   return (
     <div className="flex h-screen">
       <section
