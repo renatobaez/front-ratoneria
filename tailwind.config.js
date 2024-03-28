@@ -7,22 +7,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        'porange' : '#ffa31a',
-        'pgrey': '#808080',
-        'pdark-grey': '#292929',
+        'porange' : '#ff9000',
+        'pgrey': 'rgba(67, 59, 54, .9)',
+        'pdark-grey': '#151515',
         'pdark': '#1b1b10'
       }
     },
     screens: {
-      'tablet': '640px',
+      'sm': '375px',
+      // => @media (min-width: 375px) { ... }
+      'md': '640px',
       // => @media (min-width: 640px) { ... }
 
-      'laptop': '1024px',
+      'lg': '1024px',
       // => @media (min-width: 1024px) { ... }
 
-      'desktop': '1280px',
+      'xl': '1280px',
       // => @media (min-width: 1280px) { ... }
     },
+    backgroundImage: {
+      'bg-ratoneria': "url('public/bg_ratoneriac.jpg')",
+    }
   },
   plugins: [],
 }

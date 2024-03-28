@@ -1,15 +1,24 @@
+import { useState } from "react";
+import Carousel from "../components/Carousel";
+import Sidebar from "../components/Sidebar";
+import Searchbar from "../components/ui/Searchbar";
+import Card from "../components/Card";
+import Gallery from "../components/Gallery";
+
 function Home() {
+  let slides = [
+    "https://dummyimage.com/1280x250/000/fff",
+    "https://dummyimage.com/1280x250/000/fff",
+    "https://dummyimage.com/1280x250/000/fff",
+    "https://dummyimage.com/1280x250/000/fff",
+  ];
+
   return (
-    <>
-      <p>Home</p>
-      <p>Variables de colores en el archivo tailwind.config.js</p>
-      <div className="flex">
-        <div className="w-10 h-20 bg-porange mr-2"></div>
-        <div className="w-10 h-20 bg-pgrey mr-2"></div>
-        <div className="w-10 h-20 bg-pdark-grey mr-2"></div>
-        <div className="w-10 h-20 bg-pdark"></div>
-      </div>
-    </>
+    <div className="flex flex-col lg:w-[1280px] w-full mx-auto relative mb-10 mt-10">
+      <Carousel slides={slides} />
+      <Searchbar />
+      <Gallery />
+    </div>
   );
 }
 

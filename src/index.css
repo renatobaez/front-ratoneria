@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.bg-custom-background {
+  background-image: url('./bg_ratoneria.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
