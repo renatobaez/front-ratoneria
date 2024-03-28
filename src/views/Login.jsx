@@ -1,32 +1,42 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import { useSetUser } from "../context/UserProvider";
 //import { jwtDecode } from "jwt-decode";
 
 function Login() {
   //verifica si muestra o no el password
   const [isPasswordHidden, setPasswordHidden] = useState(true);
   //Asignar el registro de usuario al userContext
-  const setUser = useSetUser();
   //token de google para incicar sesion
   const clientID =
     "959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com";
 
   const onSuccess = (res) => {
-    localStorage.setItem("profileObj", JSON.stringify(res));
+    /*localStorage.setItem("profileObj", JSON.stringify(res));
     const token = jwtDecode(res.credential);
-    //const token = res;
     console.log(token)
-    setUser(toke.name, token.email, token.nickname, token.picture)
+    */
     window.location.href = "/profile";
   };
   const onFailure = (res) => {
     setUser("", "", "", "");
     console.log("Login failed: res:", res);
   };
+
+  const handleLogout = () => {
+    setUser("", "", "", "");
+    localStorage.clear();
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem("name", "Michael Jackson");
+    localStorage.setItem("email", "michael@jackson");
+    localStorage.setItem("nickname", "MJ");
+    localStorage.setItem("avatar", "https://i.ibb.co/0yTQF8k/michael.jpg");
+    window.location.href = "/profile";
+  };
   useEffect(() => {
-    if (localStorage.getItem("profileObj")) {
+    if (localStorage.getItem("email") != null) {
       //window.location.href = "/profile";
     }
   }, [0]);
@@ -83,7 +93,7 @@ function Login() {
               -------------
             </div>
           </div>
-          <form className="flex-col w-2/3 m-auto">
+          <form className="flex-col w-2/3 m-auto" onSubmit={handleSubmit}>
             <div className="relative max-w-xs">
               <input
                 type="text"
@@ -156,7 +166,8 @@ function Login() {
               </div>
             </div>
             <div className="w-h-full flex justify-center mt-4">
-              <button className="px-7 py-3.5 text-white bg-porange hover:bg-porange-600 rounded-lg shadow-md focus:shadow-none duration-100 ring-offset-2 ring-indigo-600 focus:ring-2">
+              <button
+                className="px-7 py-3.5 text-white bg-porange hover:bg-porange-600 rounded-lg shadow-md focus:shadow-none duration-100 ring-offset-2 ring-indigo-600 focus:ring-2">
                 Entrar
               </button>
             </div>
