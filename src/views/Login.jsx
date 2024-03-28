@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
-// login fix commit
-
 function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profileObj, setProfileObj] = useState({});

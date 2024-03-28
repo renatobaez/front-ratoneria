@@ -1,20 +1,27 @@
-import Tabs from "../components/Tabs"
+import Tabs from "../components/Tabs";
 import Star from "./Star";
-function card() {
-    return (
-        <div className="border-2 border-porange">
-            <div className=" flex flex-col justify-between m-5 w-72 h-96 rounded gap-5">
-                <p className="flex-auto text-center text-2xl m-3">Titulo Bar</p>
-                <img className="w-64 h-72 flex m-3 pl-1 rounded" src="https://i.pinimg.com/originals/b0/cb/52/b0cb52a3da954d39ddd4f8e49ec8cb30.jpg" alt="imagen" />
-            </div>
-            <div>
-                <Star></Star>
-            </div>
-            <div>
-                <Tabs></Tabs>
-            </div>
-            
+function Card() {
+  return (
+    <div className="flex flex-col">
+      <div className=" flex flex-col w-[100%] h-{100%] rounded gap-5 items-center self-center">
+        <img
+          className="w-[100%] h-[100%] flex rounded shadow-2xl mb-2"
+          src="https://i.pinimg.com/originals/b0/cb/52/b0cb52a3da954d39ddd4f8e49ec8cb30.jpg"
+          alt="imagen"
+        />
+      </div>
+      <div className="bg-pdark-grey">
+        <p className="flex-auto text-center text-2xl text-white m-2">
+          Titulo Bar
+        </p>
+        <div>
+          <Star></Star>
         </div>
-    );
+        <div>
+          <Tabs></Tabs>
+        </div>
+      </div>
+    </div>
+  );
 }
-export default card
+export default Card;
