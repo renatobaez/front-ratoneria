@@ -7,10 +7,14 @@ function Star() {
   const [hover, setHover] = useState(null);
   return (
     <div className="flex flex-row justify-center mb-3">
-      {[...Array(5)].map((star, index) => {
+      {[...Array(5)].map((_, index) => {
         const currentRating = index + 1;
         return (
-          <label>
+          <label key={index}>
+
+            {" "}
+            {/* Agregar key */}
+
             <input
               className="hidden"
               type="radio"
