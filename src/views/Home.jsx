@@ -16,7 +16,7 @@ function Home() {
     <div className="flex flex-col lg:w-[1280px] w-full mx-auto relative mb-10 mt-10">
       <Carousel slides={slides} />
       <Searchbar />
-      <Filters />
+      {/* <Filters /> */}
       <Gallery />
     </div>
   );
