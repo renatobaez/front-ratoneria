@@ -1,11 +1,15 @@
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext"; // Importa el proveedor de autenticación
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
-    <Router>
-      <AppRoutes />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </AuthProvider>
   );
 }
 
