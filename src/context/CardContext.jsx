@@ -18,6 +18,7 @@ export const CardProvider = ({ children }) => {
       }
       const shops = await response.json();
       setCards(shops);
+      return shops;
     } catch (error) {
       console.error("error en el fetch");
       throw error;

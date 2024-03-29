@@ -28,7 +28,7 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/local"
+        path="/local/:id"
         element={
           <Layout>
             <Local />
