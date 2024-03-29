@@ -19,6 +19,14 @@ function AppRoutes() {
           </Layout>
         }
       />
+      <Route 
+        path="/post"
+        element={
+          <Layout>
+            <Post />
+          </Layout>
+        }
+        />
       <Route
         path="/local"
         element={
