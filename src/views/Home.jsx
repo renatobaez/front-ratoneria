@@ -1,4 +1,3 @@
-import Filters from "../components/Filters";
 import Carousel from "../components/Carousel";
 import Searchbar from "../components/ui/Searchbar";
 
@@ -16,7 +15,6 @@ function Home() {
     <div className="flex flex-col lg:w-[1280px] w-full mx-auto relative mb-10 mt-10">
       <Carousel slides={slides} />
       <Searchbar />
-      {/* <Filters /> */}
       <Gallery />
     </div>
   );
