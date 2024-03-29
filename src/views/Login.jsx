@@ -165,8 +165,8 @@ function Login() {
             </div>
             <div>
               <div className="relative max-w-xs mt-2">
-                <button
-                  className="text-gray-400 absolute right-3 inset-y-0 my-auto active:text-gray-600"
+                <span
+                  className="text-gray-400 absolute right-3 inset-y-2 my-auto active:text-gray-600"
                   onClick={() => setPasswordHidden(!isPasswordHidden)}
                 >
                   {isPasswordHidden ? (
@@ -205,7 +205,7 @@ function Login() {
                       />
                     </svg>
                   )}
-                </button>
+                </span>
                 <input
                   type={isPasswordHidden ? "password" : "text"}
                   name="password"
