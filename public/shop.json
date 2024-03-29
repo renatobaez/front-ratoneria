@@ -1,0 +1,72 @@
+[
+  {
+    "id": "d46fa366-bad5-48ea-90b3-62d9b0e30c58",
+    "img": "https://i.pinimg.com/originals/b0/cb/52/b0cb52a3da954d39ddd4f8e49ec8cb30.jpg",
+    "title": "Bar 1",
+    "rating": 5,
+    "category": "bar"
+  },
+  {
+    "id": "7efdf6a5-a5dd-4c3d-b70a-642755dc01b7",
+    "img": "https://media.traveler.es/photos/652e9e2c1a6a8e2a79e99e24/1:1/w_900,h_900,c_limit/Sips.jpg",
+    "title": "Bar 2",
+    "rating": 5,
+    "category": "bar"
+  },
+  {
+    "id": "d29bb97e-6861-43d5-b89a-b97c7d4d5a71",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl4bg4hPiuniTgV729CqgNmTVH9JVuw37PJQ",
+    "title": "Bar 3",
+    "rating": 5,
+    "category": "bar"
+  },
+  {
+    "id": "8fe494ad-d7d6-4e20-ac7d-aef766af870f",
+    "img": "https://www.cerveza-kunstmann.cl/wp-content/uploads/2020/07/Bares_1000x1000_1.png",
+    "title": "Bar 4",
+    "rating": 5,
+    "category": "bar"
+  },
+  {
+    "id": "53cad84f-13dc-4adf-8ff3-d0e5b0c3a382",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT844_CSMZfUtR5oMm7CR9-HZbjaikArF9k0A",
+    "title": "Restaurant 5",
+    "rating": 2,
+    "category": "restaurant"
+  },
+  {
+    "id": "c438c45c-618b-44e8-a97a-3dd5821fccdb",
+    "img": "https://thehappening.com/wp-content/uploads/2019/12/terraza-chacha.jpg",
+    "title": "Bar 6",
+    "rating": 3,
+    "category": "bar"
+  },
+  {
+    "id": "d3d53f71-14e1-4e23-a1be-faf0fc0fc3cb",
+    "img": "https://www.chilegastronomia.cl/uploads/userfiles/images/CHIRINGUITO-IQUIQUE.jpg",
+    "title": "Restaurant 7",
+    "rating": 5,
+    "category": "restaurant"
+  },
+  {
+    "id": "2fcf4c97-ed1c-4c50-bbd5-e81a92c0eb5a",
+    "img": "https://www.chilegastronomia.cl/uploads/contenido/contenido_galeria/carousel_6c2a5fce825412e432ba3aa3d01ec0e3b2eda7e5.jpg",
+    "title": "Bar 8",
+    "rating": 5,
+    "category": "bar"
+  },
+  {
+    "id": "80993b5f-4e89-4205-8591-1a4bcd6c0a98",
+    "img": "https://media-cdn.tripadvisor.com/media/photo-s/0b/23/c4/e0/ruca-bar.jpg",
+    "title": "Bar 9",
+    "rating": 1,
+    "category": "bar"
+  },
+  {
+    "id": "d7e02394-d345-463b-b6e9-c0f53700202e",
+    "img": "https://media-cdn.tripadvisor.com/media/photo-s/0a/f9/64/14/frente.jpg",
+    "title": "Bar 10",
+    "rating": 4,
+    "category": "bar"
+  }
+]

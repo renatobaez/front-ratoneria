@@ -1,45 +1,90 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-//import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "../context/AuthContext";
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
   //verifica si muestra o no el password
   const [isPasswordHidden, setPasswordHidden] = useState(true);
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
   //Asignar el registro de usuario al userContext
   //token de google para incicar sesion
   const clientID =
     "959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com";
 
   const onSuccess = (res) => {
+    const token = jwtDecode(res.credential);
+    setIsLoggedIn(true);
+    navigate("/profile");
     /*localStorage.setItem("profileObj", JSON.stringify(res));
     const token = jwtDecode(res.credential);
     console.log(token)
     */
-    window.location.href = "/profile";
+    //window.location.href = "/profile";
   };
   const onFailure = (res) => {
     setUser("", "", "", "");
     console.log("Login failed: res:", res);
   };
 
-  const handleLogout = () => {
-    setUser("", "", "", "");
-    localStorage.clear();
+  const saveSessionData = (userData) => {
+    localStorage.setItem("userData", JSON.stringify(userData));
   };
+
+  const handleSuccessfulLogin = (username) => {
+    setIsLoggedIn(true);
+    saveSessionData({ username });
+    navigate("/profile");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("name", "Michael Jackson");
-    localStorage.setItem("email", "michael@jackson");
-    localStorage.setItem("nickname", "MJ");
-    localStorage.setItem("avatar", "https://i.ibb.co/0yTQF8k/michael.jpg");
-    window.location.href = "/profile";
-  };
-  useEffect(() => {
-    if (localStorage.getItem("email") != null) {
-      //window.location.href = "/profile";
+
+    //usuarios falsos para pruebas
+    const fictitiousUsers = [
+      { username: "admin@mail.cl", password: "admin123" },
+      { username: "user@mail.com", password: "password123" },
+    ];
+
+    const foundUser = fictitiousUsers.find(
+      (user) =>
+        user.username === formData.username &&
+        user.password === formData.password
+    );
+
+    if (foundUser) {
+      console.log("Inicio de sesión exitoso:", formData.username);
+      handleSuccessfulLogin(formData.username);
+    } else {
+      console.log("Inicio de sesión fallido: Credenciales incorrectas");
+      setFormData({
+        username: "",
+        password: "",
+      });
     }
-  }, [0]);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("email") != null) {
+  //     //window.location.href = "/profile";
+  //   }
+  // }, [0]);
+
   return (
     <div className="flex h-screen">
       <section
@@ -97,6 +142,9 @@ function Login() {
             <div className="relative max-w-xs">
               <input
                 type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
                 placeholder="Ingresa tu email"
                 className="w-full pr-12 pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
@@ -117,8 +165,8 @@ function Login() {
             </div>
             <div>
               <div className="relative max-w-xs mt-2">
-                <button
-                  className="text-gray-400 absolute right-3 inset-y-0 my-auto active:text-gray-600"
+                <span
+                  className="text-gray-400 absolute right-3 inset-y-2 my-auto active:text-gray-600"
                   onClick={() => setPasswordHidden(!isPasswordHidden)}
                 >
                   {isPasswordHidden ? (
@@ -157,17 +205,19 @@ function Login() {
                       />
                     </svg>
                   )}
-                </button>
+                </span>
                 <input
                   type={isPasswordHidden ? "password" : "text"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   placeholder="Ingresa tu contraseña"
                   className="w-full pr-12 pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
               </div>
             </div>
             <div className="w-h-full flex justify-center mt-4">
-              <button
-                className="px-7 py-3.5 text-white bg-porange hover:bg-porange-600 rounded-lg shadow-md focus:shadow-none duration-100 ring-offset-2 ring-indigo-600 focus:ring-2">
+              <button className="px-7 py-3.5 text-white bg-porange hover:bg-porange-600 rounded-lg shadow-md focus:shadow-none duration-100 ring-offset-2 ring-indigo-600 focus:ring-2">
                 Entrar
               </button>
             </div>
