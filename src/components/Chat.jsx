@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
 
+// conexion al server
 const socket =io("backchat-production-8699.up.railway.app", {
   transports: ["websocket"],
     auth: {
       token: localStorage.getItem("token")
   }
 });
+
 
 export default function Chat({local="local"}) {
   const [nickname, setNickName] = useState("");
