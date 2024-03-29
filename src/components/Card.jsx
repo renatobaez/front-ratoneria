@@ -10,15 +10,18 @@ function Card({ id, img, title, rating, category }) {
     navigate(`./local?id=${id}`, id);
   };
   return (
-    <div className="flex flex-col" onClick={handleClick}>
-      <div className=" flex flex-col w-[100%] h-{100%] rounded gap-5 items-center self-center">
+    <div className="flex flex-col h-[600px]">
+      <div
+        className="flex flex-col w-full h-1/2 rounded gap-5 items-center self-center cursor-pointer"
+        onClick={handleClick}
+      >
         <img
-          className="w-[100%] h-[100%] flex rounded shadow-2xl mb-2"
+          className="w-full h-full flex rounded shadow-2xl"
           src={img}
           alt="imagen"
         />
       </div>
-      <div className="bg-pdark-grey">
+      <div className="bg-pdark-grey h-1/2">
         <p className="flex-auto text-center text-2xl text-white m-2">{title}</p>
         <p className="text-white text-center p-2">{category}</p>
         <div>
