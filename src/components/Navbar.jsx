@@ -1,16 +1,14 @@
-import React, { useContext, useState, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useContext, useState, useRef } from "react";
+import { Link,  } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const location = useLocation();
   const logoRef = useRef(null);
 
   const navigation = [];
 
-  const activeButton = location.pathname === "/login" ? "login" : "register";
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
@@ -63,7 +61,7 @@ const Navbar = () => {
             <a
               key={idx}
               href={item.path}
-              className="text-gray-700 hover:text-indigo-600 ml-4"
+              className="text-gray-700 ml-4 rounded-md px-3 py-1 hover:bg-porange"
             >
               {item.title}
             </a>
@@ -71,7 +69,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <Link
               to="/"
-              className="text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1"
+              className="text-white ml-4 rounded-md px-3 py-1 hover:bg-porange"
               onClick={handleLogout}
             >
               Cerrar Sesión
@@ -80,17 +78,13 @@ const Navbar = () => {
             <>
               <Link
                 to="/login"
-                className={`text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1 ${
-                  activeButton === "login" ? "bg-porange" : ""
-                }`}
+                className="text-white ml-4 rounded-md px-3 py-1 hover:bg-porange"
               >
                 INICIAR SESION
               </Link>
               <Link
                 to="/register"
-                className={`font-bold text-black hover:text-indigo-600 text-[20px] rounded-sm p-2 ${
-                  activeButton === "register" ? "bg-porange" : ""
-                }`}
+                className="font-bold text-white text-[20px] rounded-sm p-2 hover:bg-porange"
               >
                 REGISTRARSE
               </Link>
@@ -140,7 +134,7 @@ const Navbar = () => {
             <a
               key={idx}
               href={item.path}
-              className="text-gray-700 hover:text-indigo-600 my-2"
+              className="text-gray-700 my-2 rounded-md px-3 py-1 hover:bg-porange"
             >
               {item.title}
             </a>
@@ -148,7 +142,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <Link
               to="/"
-              className="text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1"
+              className="text-white ml-4 rounded-md px-3 py-1 hover:bg-porange"
               onClick={handleLogout}
             >
               Cerrar Sesión
@@ -157,17 +151,13 @@ const Navbar = () => {
             <>
               <Link
                 to="/login"
-                className={`text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1 ${
-                  activeButton === "login" ? "bg-porange" : ""
-                }`}
+                className="text-white ml-4 rounded-md px-3 py-1 hover:bg-porange"
               >
                 INICIAR SESION
               </Link>
               <Link
                 to="/register"
-                className={`font-bold text-black hover:text-indigo-600 text-[20px] rounded-sm p-2 ${
-                  activeButton === "register" ? "bg-porange" : ""
-                }`}
+                className="font-bold text-white text-[20px] rounded-sm p-2 hover:bg-porange"
               >
                 REGISTRARSE
               </Link>
