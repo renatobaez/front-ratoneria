@@ -18,14 +18,12 @@ return (
 
         <label>Nombre del Local</label>
         <input {...register("nombreLocal", { required: true })} 
-        className="w-full pr-12 pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"
-        />
+        className="w-full pr-12 pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"/>
         {errors.nombreLocal && <span>Campo obligatorio</span>}
 
         <label>descripcion</label>
         <input {...register("descripcion", { required: true })} 
-        className="w-full  pr-12 pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"
-        />
+        className="w-full  pr-12 pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"/>
         {errors.descripcion && <span>Campo obligatorio</span>}
 
         <label>Categoria</label>
@@ -40,8 +38,7 @@ return (
         <label>Foto</label>
         <input {...register("foto", { required: true })} 
         type="file"
-        className="w-[50%] pr-12 pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"
-        />
+        className="w-[50%] pr-12 pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"/>
         {errors.foto && <span>Debe subir una foto</span>}
 
         <div>
