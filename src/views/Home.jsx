@@ -1,8 +1,7 @@
-import { useState } from "react";
+import Filters from "../components/Filters";
 import Carousel from "../components/Carousel";
-import Sidebar from "../components/Sidebar";
 import Searchbar from "../components/ui/Searchbar";
-import Card from "../components/Card";
+
 import Gallery from "../components/Gallery";
 
 function Home() {
@@ -17,6 +16,7 @@ function Home() {
     <div className="flex flex-col lg:w-[1280px] w-full mx-auto relative mb-10 mt-10">
       <Carousel slides={slides} />
       <Searchbar />
+      {/* <Filters /> */}
       <Gallery />
     </div>
   );

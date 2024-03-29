@@ -29,9 +29,9 @@ export default function Carousel({ slides }) {
           transform: `translateX(-${current * 100}%)`,
         }}
       >
-        {slides.map((s, index) => (
+        {slides.map((s, photo) => (
           <img
-            key={index}
+            key={photo}
             src={s}
             alt="imagen promocional"
             className="w-1180 h-250 object-cover"

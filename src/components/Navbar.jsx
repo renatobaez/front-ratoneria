@@ -1,33 +1,58 @@
-import { useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const location = useLocation();
+  const logoRef = useRef(null);
 
   const navigation = [];
 
   const activeButton = location.pathname === "/login" ? "login" : "register";
 
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    // Realiza las acciones necesarias para cerrar sesión
+    setIsLoggedIn(false);
+  };
+
   return (
     <nav
-      className="bg-pdark-grey  font-sans text-xl py-2 px-4"
+      className="bg-pdark-grey font-sans text-xl py-2 px-4"
       style={{ fontFamily: "Rajdhani, sans-serif" }}
     >
-      <div className="flex items-center justify-between max-w-screen-xl mx-auto">
+      <div className="flex items-center justify-evenly max-w-screen-xl mx-auto">
         <div className="flex items-center">
-          <Link to="/" className="flex items-center">
+          <Link
+            to="/"
+            className="flex items-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <img
-              src="https://i.ibb.co/Qf7cfXH/image.jpg" // Cambié la URL del logo
-              width={120}
-              height={50}
+              ref={logoRef}
+              className={`logo lg:w-[150px] w-[100px] transition-transform duration-300 transform hover:scale-110 ${
+                isHovered ? "hover:animate-neon" : ""
+              }`}
+              src="https://i.ibb.co/Qf7cfXH/image.jpg"
               alt="Logo La RatonerIA"
+              style={
+                isHovered
+                  ? {
+                      filter:
+                        "drop-shadow(0 0 10px #ff6ac1) drop-shadow(0 0 20px #ff6ac1) drop-shadow(0 0 30px #ff6ac1)",
+                    }
+                  : null
+              }
             />
             <div className="flex gap-2 items-center">
-              <h1 className=" text-white lg:text-[50px]  text-[40px] font-semibold ml-2 hidden sm:block">
+              <h1 className="text-white lg:text-[50px] text-[24px] font-semibold ml-2 hidden sm:block">
                 LA RATONER
               </h1>
-              <div className="  font-bold bg-porange lg:text-[50px] text-[45px] rounded-sm">
+              <div className="font-bold bg-porange lg:text-[50px] text-[45px] rounded-sm">
                 <h1 className="p-2">IA</h1>
               </div>
             </div>
@@ -43,22 +68,34 @@ const Navbar = () => {
               {item.title}
             </a>
           ))}
-          <Link
-            to="/login"
-            className={`text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1 ${
-              activeButton === "login" ? "bg-porange" : ""
-            }`}
-          >
-            INICIAR SESION
-          </Link>
-          <Link
-            to="/register"
-            className={`font-bold text-black hover:text-indigo-600 text-[20px] rounded-sm p-2 ${
-              activeButton === "register" ? "bg-porange" : ""
-            }`}
-          >
-            REGISTRARSE
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              to="/"
+              className="text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1"
+              onClick={handleLogout}
+            >
+              Cerrar Sesión
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className={`text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1 ${
+                  activeButton === "login" ? "bg-porange" : ""
+                }`}
+              >
+                INICIAR SESION
+              </Link>
+              <Link
+                to="/register"
+                className={`font-bold text-black hover:text-indigo-600 text-[20px] rounded-sm p-2 ${
+                  activeButton === "register" ? "bg-porange" : ""
+                }`}
+              >
+                REGISTRARSE
+              </Link>
+            </>
+          )}
         </div>
         <div className="md:hidden">
           <button
@@ -108,22 +145,34 @@ const Navbar = () => {
               {item.title}
             </a>
           ))}
-          <Link
-            to="/login"
-            className={`text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1 ${
-              activeButton === "login" ? "bg-porange" : ""
-            }`}
-          >
-            INICIAR SESION
-          </Link>
-          <Link
-            to="/register"
-            className={`font-bold text-black hover:text-indigo-600 text-[20px] rounded-sm p-2 ${
-              activeButton === "register" ? "bg-porange" : ""
-            }`}
-          >
-            REGISTRARSE
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              to="/"
+              className="text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1"
+              onClick={handleLogout}
+            >
+              Cerrar Sesión
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className={`text-white hover:text-indigo-600 ml-4 rounded-md px-3 py-1 ${
+                  activeButton === "login" ? "bg-porange" : ""
+                }`}
+              >
+                INICIAR SESION
+              </Link>
+              <Link
+                to="/register"
+                className={`font-bold text-black hover:text-indigo-600 text-[20px] rounded-sm p-2 ${
+                  activeButton === "register" ? "bg-porange" : ""
+                }`}
+              >
+                REGISTRARSE
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

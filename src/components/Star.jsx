@@ -1,22 +1,26 @@
-/* eslint-disable react/jsx-key */
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-//commit fix
-function Star() {
-  const [rating, setRating] = useState(null);
+
+function Star({ paramRating }) {
+  const [rating, setRating] = useState(paramRating);
   const [hover, setHover] = useState(null);
+
+  const handleClick = (newRating) => {
+    setRating(newRating);
+  };
+
   return (
     <div className="flex flex-row justify-center mb-3">
-      {[...Array(5)].map((star, index) => {
+      {[...Array(5)].map((_, index) => {
         const currentRating = index + 1;
         return (
-          <label>
+          <label key={index}>
             <input
               className="hidden"
               type="radio"
               name="rating"
               value={currentRating}
-              onClick={() => setRating(currentRating)}
+              onClick={() => handleClick(currentRating)}
             />
             <FaStar
               className="cursor-pointer"
@@ -31,4 +35,5 @@ function Star() {
     </div>
   );
 }
+
 export default Star;

@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router";
 import Home from "../views/Home";
 import Local from "../views/Local";
 import Login from "../views/Login";
+import Login2 from "../views/Login2";
 import NotFound from "../views/NotFound";
 import Post from "../views/Post";
 import Profile from "../views/Profile";

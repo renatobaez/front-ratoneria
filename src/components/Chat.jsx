@@ -1,79 +1,61 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { io } from "socket.io-client";
+import socket from './socket';
 
 export default function Chat() {
   const params  = useParams();
   const [nickname, setNickName] = useState("");
+  const [room, setRoom] = useState('local-1');
   const [message, setMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
-  useEffect(() => {
-    const nick = localStorage.getItem("nickname");
-    if (!nick) {
-      setNickName(getUsername());
-      localStorage.setItem("nickname", nickname);
-    }
-    if (!nickname) {
-      const date = new Date().toLocaleDateString();
-      const random = Math.floor(Math.random() * 1000);
-      setNickName("rat-" + random);
-    }
-  }, [0]);
-  //dirección del backenb
-  const socket = io("http://localhost:3000", {
-    auth: {
-      username: nickname,
-      chatroom: params.id,
-    },
-  });
 
   useEffect(() => {
-    socket.on("message", receiveMessage);
+    const random = Math.floor(Math.random() * 1000);
+    setNickName("RatitaCaliente-" + random);
+    socket.emit("join", {room: room, name: nickname});
+  }, [room]);
+ 
+  useEffect(() => {
+    socket.on("message", ({ body, from }) => {
+      const msg = { body, from };
+      setChatMessages((previousMessages) => [...previousMessages, msg]);
+    });
     return () => {
-      socket.off("message", receiveMessage);
+      socket.off('message');
     };
   }, []);
-
-  const receiveMessage = (message) => {
-    if (!message.from === nickname){
-      setChatMessages((state) => [message, ...state]);
-    }
+  
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value);
   };
-  const getUsername = async () => {
-    const res = await fetch(
-      "https://random-data-api.com/api/users/random_user"
-    );
-    const { username: randomUsername } = await res.json();
-    return randomUsername;
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSendMessage = () => {
+    if (!message) return;
     const newMessage = {
       body: message,
       from: nickname,
     };
-    setChatMessages((state) => [newMessage, ...state]);
+    socket.emit("message", { room: room, msg: newMessage });
     setMessage("");
-    socket.emit("message", newMessage.body);
   };
+
   return (
-    <section className="text-zinc-100" id="chat">
-      <form onSubmit={handleSubmit} className="bg-pdark-grey h-full p-10 rounded-md">
+    <section className="text-zinc-100 bg-pdark-grey h-full p-10 rounded-md" id="chat">
         <ul
           className="list-none m-0 p-0 h-52 overflow-y-scroll scroll-smooth pb-12"
           id="messages"
         >
-          {chatMessages.toReversed().map((message, index) => (
+          { 
+            chatMessages.map((msg, index) => (
             <li
               key={index}
               className={`my-2 p-2 table text-sm rounded-md ${
-                message.from === nickname ? "bg-black ml-auto" : "bg-pgrey"
+                msg.from === nickname ? "bg-black ml-auto" : "bg-pgrey"
               }`}
             >
-              <b>{message.from}</b>: {message.body}
+              <b>{msg.from}</b>: {msg.body}
             </li>
-          ))}
+            ))
+          }
         </ul>
         <input
           className="border-10 rounded-md w-9/12 mr-5 p-0 text-black"
@@ -81,11 +63,10 @@ export default function Chat() {
           name="message"
           id="input"
           placeholder="Registrate para enviar mensajes..."
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(event) => handleMessageChange(event)}
           value={message}
         />
-        <button className="bg-porange rounded-md px-3 py-1">Enviar</button>
-      </form>
+        <button className="bg-porange rounded-md px-3 py-1" onClick={handleSendMessage}>Enviar</button>
     </section>
   );
 }
