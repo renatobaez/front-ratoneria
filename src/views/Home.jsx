@@ -1,6 +1,5 @@
 import Carousel from "../components/Carousel";
 import Searchbar from "../components/ui/Searchbar";
-
 import Gallery from "../components/Gallery";
 
 function Home() {

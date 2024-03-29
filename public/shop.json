@@ -31,14 +31,14 @@
     "id": "53cad84f-13dc-4adf-8ff3-d0e5b0c3a382",
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT844_CSMZfUtR5oMm7CR9-HZbjaikArF9k0A",
     "title": "Restaurant 5",
-    "rating": 5,
-    "category": "Restaurant"
+    "rating": 2,
+    "category": "restaurant"
   },
   {
     "id": "c438c45c-618b-44e8-a97a-3dd5821fccdb",
     "img": "https://thehappening.com/wp-content/uploads/2019/12/terraza-chacha.jpg",
     "title": "Bar 6",
-    "rating": 5,
+    "rating": 3,
     "category": "bar"
   },
   {
@@ -46,7 +46,7 @@
     "img": "https://www.chilegastronomia.cl/uploads/userfiles/images/CHIRINGUITO-IQUIQUE.jpg",
     "title": "Restaurant 7",
     "rating": 5,
-    "category": "Restaurant"
+    "category": "restaurant"
   },
   {
     "id": "2fcf4c97-ed1c-4c50-bbd5-e81a92c0eb5a",
@@ -59,14 +59,14 @@
     "id": "80993b5f-4e89-4205-8591-1a4bcd6c0a98",
     "img": "https://media-cdn.tripadvisor.com/media/photo-s/0b/23/c4/e0/ruca-bar.jpg",
     "title": "Bar 9",
-    "rating": 5,
+    "rating": 1,
     "category": "bar"
   },
   {
     "id": "d7e02394-d345-463b-b6e9-c0f53700202e",
     "img": "https://media-cdn.tripadvisor.com/media/photo-s/0a/f9/64/14/frente.jpg",
     "title": "Bar 10",
-    "rating": 5,
+    "rating": 4,
     "category": "bar"
   }
 ]
