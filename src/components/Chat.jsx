@@ -9,7 +9,7 @@ const socket = io("backchat-production-8699.up.railway.app", {
   }
 });
 
-export default function Chat({ local = "local" }) {
+export default function Chat(local ) {
   const [nickname, setNickName] = useState("");
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
@@ -76,7 +76,7 @@ export default function Chat({ local = "local" }) {
   };
 
   return (
-    <section className="text-zinc-100 bg-pdark-grey h-full p-10 rounded-md max-w-lg  relative">
+    <section className="text-zinc-100 bg-pdark-grey h-full pt-10 pr-1 pb-2 pl-1 rounded-md max-w-lg  relative">
       <img
         src="https://i.ibb.co/rd2wT5d/Chat.png"
         alt="Chat Icon"
@@ -88,7 +88,7 @@ export default function Chat({ local = "local" }) {
         }}
       />
       <ul
-        className="list-none m-0 p-0 h-52 overflow-y-scroll scroll-smooth pb-2"
+        className="list-none m-0 p-0 h-full overflow-y-scroll scroll-smooth pb-2"
         id="chat-messages"
       >
         {allMessages.map((msg, index) => (
