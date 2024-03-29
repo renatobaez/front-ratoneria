@@ -37,7 +37,6 @@ function Register() {
           <form>
             <input
               type="text"
-              value=""
               onChange=""
               name="name"
               placeholder="Nombre"
@@ -47,14 +46,12 @@ function Register() {
               type="text"
               placeholder="Apellido"
               name="apellido"
-              value=""
               onChange=""
               className="w-full pr-12 pl-3 py-2  placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
             />
             <input
               type="text"
               name="nickname"
-              value=""
               onChange=""
               placeholder="Nickname"
               className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
@@ -77,7 +74,6 @@ function Register() {
               <input
                 type="email"
                 name="email"
-                value=""
                 onChange=""
                 placeholder="Enter your email"
                 className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
@@ -129,7 +125,6 @@ function Register() {
                 type={isPasswordHidden ? "password" : "password"}
                 placeholder="Contraseña"
                 name="password"
-                value=""
                 onChange=""
                 className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
               />
@@ -179,7 +174,6 @@ function Register() {
               <input
                 type={isPasswordHidden ? "password" : "password"}
                 name="confirmPassword"
-                value=""
                 onChange=""
                 placeholder="Confirmar Contraseña"
                 className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent  outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
