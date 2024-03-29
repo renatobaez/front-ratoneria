@@ -38,7 +38,7 @@ function Local() {
         </div>
         <div className="flex flex-col w-[600px]">
           <div
-            className=" bg-pdark-grey h-[500px] p-10 rounded-md w-[400px] flex flex-col"
+            className=" bg-pdark-grey h-[500px] p-1 rounded-md w-[400px] flex flex-col"
             id="chat"
           >
             <Chat />
