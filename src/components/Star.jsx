@@ -11,8 +11,10 @@ function Star() {
         const currentRating = index + 1;
         return (
           <label key={index}>
+
             {" "}
             {/* Agregar key */}
+
             <input
               className="hidden"
               type="radio"
