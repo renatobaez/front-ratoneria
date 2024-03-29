@@ -1,7 +1,16 @@
+import { useForm } from "react-hook-form"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const isSubmit = (data) => console.log(data)
+
 function Register() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
   const [isPasswordHidden, setPasswordHidden] = useState(true);
 
   return (
@@ -28,34 +37,37 @@ function Register() {
               />
             </Link>
           </picture>
+          
           <h1 className="text-3xl sm:text-2xl font-bold mb-4 mt-2 text-center hidden sm:block">
             Crear Cuenta
           </h1>
           <h1 className="text-3xl sm:text-2xl font-bold mb-4 mt-2 text-center hidden sm:block">
             Ingrese sus datos
           </h1>
-          <form>
+
+          <form onSubmit={handleSubmit(isSubmit)}>
             <input
               type="text"
-              onChange=""
-              name="name"
+              {...register("nombre", { required: true })}
               placeholder="Nombre"
-              className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
-            />
+              autoComplete="off"
+              className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg mb-2"/>
+            {errors.nombre && <span>Campo obligatorio</span>}
             <input
               type="text"
+              {...register("apellido", { required: true })}
               placeholder="Apellido"
-              name="apellido"
-              onChange=""
-              className="w-full pr-12 pl-3 py-2  placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
-            />
+              autoComplete="off"
+              className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg mb-2"/>
+              {errors.apellido && <span>Campo obligatorio</span>}
             <input
               type="text"
-              name="nickname"
-              onChange=""
+              {...register("nickname", { required: true })}
               placeholder="Nickname"
-              className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
-            />
+              autoComplete="off"
+              className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg mb-2"/>
+              {errors.nickname && <span>Campo obligatorio</span>}
+
             <div className="relative max-w-xs">
               <svg
                 className="w-6 h-6 text-gray-400 absolute right-3 inset-y-0 my-auto"
@@ -71,13 +83,14 @@ function Register() {
                   d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
                 />
               </svg>
+
               <input
-                type="email"
-                name="email"
-                onChange=""
-                placeholder="Enter your email"
-                className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
+              type="mail"
+              {...register("mail", { required: true })}
+              placeholder="E-mail"
+              className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
               />
+            {errors.mail && <span>Campo obligatorio</span>}
             </div>
             <div className="relative max-w-xs  ">
               <button
@@ -123,11 +136,12 @@ function Register() {
               </button>
               <input
                 type={isPasswordHidden ? "password" : "password"}
+                {...register("pass", { required: true })}
                 placeholder="Contraseña"
-                name="password"
-                onChange=""
+                autoComplete="off"
                 className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
               />
+              {errors.pass && <span>Campo obligatorio</span>}
             </div>
             <div className="relative max-w-xs ">
               <button
@@ -174,20 +188,20 @@ function Register() {
               <input
                 type={isPasswordHidden ? "password" : "password"}
                 name="confirmPassword"
-                onChange=""
+                autoComplete="off"
+                {...register("confirmPass", { required: true })}
                 placeholder="Confirmar Contraseña"
                 className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent  outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
               />
+              {errors.confirmPass && <span>Campo obligatorio</span>}
             </div>
-          </form>
-          <div className="flex flex-col items-center">
-            <button
-              type="submit"
-              className="px-7 py-3.5 text-white bg-porange hover:bg-porange-600 rounded-lg shadow-md focus:shadow-none duration-100 ring-offset-2 ring-indigo-600 focus:ring-2"
-            >
-              Crear Cuenta
-            </button>
+            <div className="flex flex-col items-center">
+          <div>
+            <input type="submit" className="font-bold bg-porange text-[18px] rounded-sm p-2" />
           </div>
+          </div>
+          </form>
+          
         </div>
       </section>
     </div>
