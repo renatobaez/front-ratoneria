@@ -28,7 +28,7 @@ function AppRoutes() {
           </Layout>
         }
       />
-      <Route path="/login" element={<Login2 />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/post" element={<Post />} />
       <Route
         path="/profile"
