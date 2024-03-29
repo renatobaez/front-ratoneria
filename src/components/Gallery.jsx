@@ -4,7 +4,6 @@ import { useCardContext } from "../context/CardContext";
 
 const Gallery = () => {
   const { cards, filters, setFilters } = useCardContext();
-  console.log(cards);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;

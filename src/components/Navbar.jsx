@@ -1,5 +1,5 @@
 import { useContext, useState, useRef } from "react";
-import { Link,  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
@@ -9,11 +9,12 @@ const Navbar = () => {
 
   const navigation = [];
 
-
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   const handleLogout = () => {
-    // Realiza las acciones necesarias para cerrar sesión
+    console.log("Datos de localStorage antes de limpiar:", localStorage);
+    localStorage.clear();
+    console.log("Datos de localStorage después de limpiar:", localStorage);
     setIsLoggedIn(false);
   };
 
@@ -78,7 +79,7 @@ const Navbar = () => {
             <>
               <Link
                 to="/login"
-                className="text-white ml-4 rounded-md px-3 py-1 hover:bg-porange"
+                className="font-bold text-white text-[20px] rounded-sm p-2 hover:bg-porange"
               >
                 INICIAR SESION
               </Link>
@@ -151,7 +152,7 @@ const Navbar = () => {
             <>
               <Link
                 to="/login"
-                className="text-white ml-4 rounded-md px-3 py-1 hover:bg-porange"
+                className="font-bold text-white text-[20px] rounded-sm p-2 hover:bg-porange"
               >
                 INICIAR SESION
               </Link>
