@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
 
-// conexion al server
+// conexión al servidor
 const socket = io("backchat-production-8699.up.railway.app", {
   transports: ["websocket"],
   auth: {
-    token: localStorage.getItem("token"),
-  },
+    token: localStorage.getItem("token")
+  }
 });
 
 export default function Chat({ local = "local" }) {
   const [nickname, setNickName] = useState("");
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
+  const [isFlashing, setIsFlashing] = useState(false);
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 1000);
@@ -34,13 +35,35 @@ export default function Chat({ local = "local" }) {
     scrollToBottom();
   }, [allMessages]);
 
+  useEffect(() => {
+    const interval1 = setInterval(() => {
+      setIsFlashing((prevIsFlashing) => !prevIsFlashing);
+    }, 1000); // Intervalo corto de 1 segundo
+  
+    const interval2 = setInterval(() => {
+      setIsFlashing((prevIsFlashing) => !prevIsFlashing);
+    }, 5000); // Intervalo más largo de 5 segundos
+  
+    const interval3 = setInterval(() => {
+      setIsFlashing((prevIsFlashing) => !prevIsFlashing);
+    }, 10000); // Intervalo aún más largo de 10 segundos
+  
+    return () => {
+      clearInterval(interval1);
+      clearInterval(interval2);
+      clearInterval(interval3);
+    };
+  }, []);
+
   const scrollToBottom = () => {
     const chatMessages = document.getElementById("chat-messages");
     chatMessages.scrollTop = chatMessages.scrollHeight;
   };
+
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
+
   const handleSendMessage = (event) => {
     event.preventDefault();
     if (!message) return;
@@ -49,18 +72,21 @@ export default function Chat({ local = "local" }) {
       from: nickname,
     };
     socket.emit("message", { room: local, msg: newMessage });
-
-    // Esto se debe borrar es solo para demostracion
-    // setAllMessages((previousMessages) => [...previousMessages, newMessage]);
-    // FIN de lo que se debe borrar
     setMessage("");
   };
 
   return (
-    <section
-      className="text-zinc-100 bg-pdark-grey h-full p-10 rounded-md"
-      id="chat"
-    >
+    <section className="text-zinc-100 bg-pdark-grey h-full p-10 rounded-md max-w-lg  relative">
+      <img
+        src="https://i.ibb.co/rd2wT5d/Chat.png"
+        alt="Chat Icon"
+        className="absolute top-0 right-100 w-20 h-auto z-10"
+        style={{
+          filter: isFlashing
+            ? "drop-shadow(0 0 10px #ff6ac1) drop-shadow(0 0 20px #ff6ac1) drop-shadow(0 0 30px #ff6ac1)"
+            : "" // Si no está parpadeando, elimina el filtro
+        }}
+      />
       <ul
         className="list-none m-0 p-0 h-52 overflow-y-scroll scroll-smooth pb-2"
         id="chat-messages"
@@ -68,7 +94,7 @@ export default function Chat({ local = "local" }) {
         {allMessages.map((msg, index) => (
           <li
             key={index}
-            className={`my-2 p-2 table text-sm rounded-md ${
+            className={`my-2 p-2 table text-sm rounded-md max-w-sm ${
               msg.from === nickname ? "bg-black ml-auto" : "bg-pgrey"
             }`}
           >
@@ -82,10 +108,11 @@ export default function Chat({ local = "local" }) {
           type="text"
           name="message"
           id="input"
-          placeholder="Registrate para enviar mensajes..."
+          placeholder="Regístrate para enviar mensajes..."
           onChange={(e) => handleMessageChange(e)}
           value={message}
           autoComplete="off"
+          maxLength={100}
         />
         <button className="bg-porange rounded-md px-3 py-1">Enviar</button>
       </form>
