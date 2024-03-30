@@ -75,7 +75,7 @@ export default function Chat({ local }) {
   };
 
   return (
-    <section className="text-zinc-100 bg-pdark-grey h-full pt-10 pr-1 pb-10 pl-1 rounded-md max-w-lg relative border-2">
+    <section className="text-zinc-100 bg-pdark-grey h-[90%]  pt-10 pr-1 pb-10 pl-1 rounded-md max-w-lg relative">
       <img
         src="https://i.ibb.co/rd2wT5d/Chat.png"
         alt="Chat Icon"
@@ -83,11 +83,11 @@ export default function Chat({ local }) {
         style={{
           filter: isFlashing
             ? 'drop-shadow(0 0 10px #ff6ac1) drop-shadow(0 0 20px #ff6ac1) drop-shadow(0 0 30px #ff6ac1)'
-            : '', // Si no está parpadeando, elimina el filtro
+            : '',
         }}
       />
       <ul
-        className="list-none m-0 p-0 h-full overflow-y-scroll scroll-smooth pb-2"
+        className="list-none h-full overflow-y-scroll scroll-smooth p-2 w-[90%] mx-auto mt-5"
         id="chat-messages"
       >
         {allMessages.map((msg, index) => (
@@ -101,7 +101,10 @@ export default function Chat({ local }) {
           </li>
         ))}
       </ul>
-      <form onSubmit={(e) => handleSendMessage(e)}>
+      <form
+        className="w-[90%] mx-auto mt-10"
+        onSubmit={(e) => handleSendMessage(e)}
+      >
         <input
           className="border-10 rounded-md w-9/12 mr-5 p-0 text-black"
           type="text"
