@@ -4,6 +4,7 @@ import { useCardContext } from '../context/CardContext.jsx';
 import Chat from '../components/Chat.jsx';
 import SocialLinks from '../components/ui/Rrss.jsx';
 import Tabs from '../components/Tabs.jsx';
+import Star from '../components/Star.jsx';
 
 function Local() {
   const { cards } = useCardContext();
@@ -37,6 +38,7 @@ function Local() {
           <div className="h-[600px] w-[600px]">
             <img className="mx-auto h-full rounded-md" src={local.img} alt="" />
           </div>
+          <Star paramRating={local.rating}></Star>
           <div className="mt-10 w-[90%] ">
             <Tabs />
           </div>

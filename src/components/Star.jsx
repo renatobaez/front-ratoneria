@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 
 function Star({ paramRating }) {
   const [rating, setRating] = useState(paramRating);
   const [hover, setHover] = useState(null);
+
+  useEffect(() => {
+    // Sincroniza el estado interno con la propiedad paramRating
+    setRating(paramRating);
+  }, [paramRating]);
 
   const handleClick = (newRating) => {
     setRating(newRating);
