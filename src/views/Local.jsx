@@ -19,8 +19,6 @@ function Local() {
     localStorage.setItem("local", JSON.stringify(foundLocal));
   }, [id, cards]);
 
-  console.log(local);
-
   if (!local) {
     return <div>Loading...</div>;
   }

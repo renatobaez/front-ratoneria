@@ -5,11 +5,11 @@ import io from "socket.io-client";
 const socket = io("backchat-production-8699.up.railway.app", {
   transports: ["websocket"],
   auth: {
-    token: localStorage.getItem("token")
-  }
+    token: localStorage.getItem("token"),
+  },
 });
 
-export default function Chat(local ) {
+export default function Chat(local) {
   const [nickname, setNickName] = useState("");
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
@@ -39,15 +39,15 @@ export default function Chat(local ) {
     const interval1 = setInterval(() => {
       setIsFlashing((prevIsFlashing) => !prevIsFlashing);
     }, 1000); // Intervalo corto de 1 segundo
-  
+
     const interval2 = setInterval(() => {
       setIsFlashing((prevIsFlashing) => !prevIsFlashing);
     }, 5000); // Intervalo más largo de 5 segundos
-  
+
     const interval3 = setInterval(() => {
       setIsFlashing((prevIsFlashing) => !prevIsFlashing);
     }, 10000); // Intervalo aún más largo de 10 segundos
-  
+
     return () => {
       clearInterval(interval1);
       clearInterval(interval2);
@@ -84,7 +84,7 @@ export default function Chat(local ) {
         style={{
           filter: isFlashing
             ? "drop-shadow(0 0 10px #ff6ac1) drop-shadow(0 0 20px #ff6ac1) drop-shadow(0 0 30px #ff6ac1)"
-            : "" // Si no está parpadeando, elimina el filtro
+            : "", // Si no está parpadeando, elimina el filtro
         }}
       />
       <ul
