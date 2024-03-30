@@ -20,14 +20,12 @@ function Login() {
     "959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com";
 
   const onSuccess = (res) => {
-    const token = jwtDecode(res.credential);
     setIsLoggedIn(true);
-    navigate("/profile");
-    /*localStorage.setItem("profileObj", JSON.stringify(res));
-    const token = jwtDecode(res.credential);
-    console.log(token)
-    */
-    //window.location.href = "/profile";
+    const { name, email, picture } = jwtDecode(res.credential);
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("avatar", picture);
+    navigate("/");
   };
   const onFailure = (res) => {
     setUser("", "", "", "");
@@ -40,8 +38,17 @@ function Login() {
 
   const handleSuccessfulLogin = (username) => {
     setIsLoggedIn(true);
+    if(username === "admin@mail.cl") {
+      localStorage.setItem("name", "Admin");
+      localStorage.setItem("email", username);
+      localStorage.setItem("avatar", "../rat-king.png");
+    }else{
+      localStorage.setItem("name", "Invitado");
+      localStorage.setItem("email", username);
+      localStorage.setItem("avatar", "../rat-user.jpg");
+    }
     saveSessionData({ username });
-    navigate("/profile");
+    navigate("/");
   };
 
   const handleSubmit = (e) => {
@@ -50,7 +57,7 @@ function Login() {
     //usuarios falsos para pruebas
     const fictitiousUsers = [
       { username: "admin@mail.cl", password: "admin123" },
-      { username: "user@mail.com", password: "password123" },
+      { username: "user@mail.com", password: "123" },
     ];
 
     const foundUser = fictitiousUsers.find(
