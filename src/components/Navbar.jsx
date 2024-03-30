@@ -10,10 +10,12 @@ const Navbar = () => {
   const navigation = [];
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-
+  
   const name = localStorage.getItem("name");
   const avatar = localStorage.getItem("avatar");
 
+  if(localStorage.getItem("email")) setIsLoggedIn(true);
+  
   const handleLogout = () => {
     console.log("Datos de localStorage antes de limpiar:", localStorage);
     localStorage.clear();
@@ -88,6 +90,7 @@ const Navbar = () => {
               Cerrar Sesión
             </Link></div>
           ) : (
+            
             <>
               <Link
                 to="/login"
