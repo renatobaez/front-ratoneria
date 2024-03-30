@@ -6,16 +6,13 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const logoRef = useRef(null);
-
   const navigation = [];
-
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   const name = localStorage.getItem('name');
   const avatar = localStorage.getItem('avatar');
 
-  if(localStorage.getItem("email")) setIsLoggedIn(true);
-  
+  if (localStorage.getItem('email')) setIsLoggedIn(true);
   const handleLogout = () => {
     console.log('Datos de localStorage antes de limpiar:', localStorage);
     localStorage.clear();
@@ -92,7 +89,6 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            
             <>
               <Link
                 to="/login"
