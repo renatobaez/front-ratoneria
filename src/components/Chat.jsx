@@ -18,7 +18,7 @@ export default function Chat({ local }) {
     const random = Math.floor(Math.random() * 1000);
     setNickName('Rata-Anonima-' + random);
     socket.emit('join', { room: local, name: nickname });
-  }, [local, nickname]);
+  }, [local]);
 
   useEffect(() => {
     socket.on('message', ({ body, from }) => {
