@@ -75,7 +75,7 @@ export default function Chat({ local }) {
   };
 
   return (
-    <section className="text-zinc-100 bg-pdark-grey h-full pt-10 pr-1 pb-10 pl-1 rounded-md max-w-lg  relative">
+    <section className="text-zinc-100 bg-pdark-grey h-full pt-10 pr-1 pb-10 pl-1 rounded-md max-w-lg relative border-2">
       <img
         src="https://i.ibb.co/rd2wT5d/Chat.png"
         alt="Chat Icon"

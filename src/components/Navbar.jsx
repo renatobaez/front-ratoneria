@@ -14,8 +14,8 @@ const Navbar = () => {
   const name = localStorage.getItem('name');
   const avatar = localStorage.getItem('avatar');
 
-  if(localStorage.getItem("email")) setIsLoggedIn(true);
-  
+  if (localStorage.getItem('email')) setIsLoggedIn(true);
+
   const handleLogout = () => {
     console.log('Datos de localStorage antes de limpiar:', localStorage);
     localStorage.clear();
@@ -92,7 +92,6 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            
             <>
               <Link
                 to="/login"
