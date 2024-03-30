@@ -4,8 +4,8 @@ function NotFound() {
       className="w-full h-screen flex items-center justify-center"
       style={{
         backgroundImage: "url('/bg_black.JPG')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       <img

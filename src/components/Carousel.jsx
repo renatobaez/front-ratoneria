@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import {
   BsFillArrowRightCircleFill,
   BsFillArrowLeftCircleFill,
-} from "react-icons/bs";
+} from 'react-icons/bs';
 
 export default function Carousel({ slides }) {
   const [current, setCurrent] = useState(0);
@@ -19,7 +19,7 @@ export default function Carousel({ slides }) {
       nextSlide();
     }, 2000);
     return () => clearInterval(timer);
-  }, [current]);
+  });
 
   return (
     <div className="lg:h-[200px] lg:w-[100%]  mx-auto overflow-hidden relative lg:rounded-lg shadow-xl">
