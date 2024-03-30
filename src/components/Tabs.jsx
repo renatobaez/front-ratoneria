@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const tabsData = [
   {
-    label: "Precios",
-    content: "Chorrillana: $9990",
+    label: 'Precios',
+    content: 'Chorrillana: $9990',
   },
   {
-    label: "Comentarios",
-    content: "Tabien",
+    label: 'Comentarios',
+    content: 'Tabien',
   },
 ];
 
@@ -23,8 +23,8 @@ function Tabs() {
               key={idx}
               className={`py-2 border-b-4 transition-colors duration-300 ${
                 idx === activeTabIndex
-                  ? "border-porange"
-                  : "border-transparent hover:border-porange"
+                  ? 'border-porange'
+                  : 'border-transparent hover:border-porange'
               }`}
               onClick={() => setActiveTabIndex(idx)}
             >

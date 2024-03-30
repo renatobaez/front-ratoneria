@@ -1,54 +1,50 @@
-import { useEffect, useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import { AuthContext } from "../context/AuthContext";
-import { jwtDecode } from "jwt-decode";
+import { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { AuthContext } from '../context/AuthContext';
+import { jwtDecode } from 'jwt-decode';
 
 function Login() {
-  //verifica si muestra o no el password
   const [isPasswordHidden, setPasswordHidden] = useState(true);
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { setIsLoggedIn } = useContext(AuthContext);
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   const navigate = useNavigate();
-  //Asignar el registro de usuario al userContext
-  //token de google para incicar sesion
   const clientID =
-    "959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com";
+    '959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com';
 
   const onSuccess = (res) => {
     setIsLoggedIn(true);
     const { name, email, picture } = jwtDecode(res.credential);
-    localStorage.setItem("name", name);
-    localStorage.setItem("email", email);
-    localStorage.setItem("avatar", picture);
-    navigate("/");
+    localStorage.setItem('name', name);
+    localStorage.setItem('email', email);
+    localStorage.setItem('avatar', picture);
+    navigate('/');
   };
   const onFailure = (res) => {
-    setUser("", "", "", "");
-    console.log("Login failed: res:", res);
+    console.log('Login failed: res:', res);
   };
 
   const saveSessionData = (userData) => {
-    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem('userData', JSON.stringify(userData));
   };
 
   const handleSuccessfulLogin = (username) => {
     setIsLoggedIn(true);
-    if(username === "admin@mail.cl") {
-      localStorage.setItem("name", "Admin");
-      localStorage.setItem("email", username);
-      localStorage.setItem("avatar", "../rat-king.png");
-    }else{
-      localStorage.setItem("name", "Invitado");
-      localStorage.setItem("email", username);
-      localStorage.setItem("avatar", "../rat-user.jpg");
+    if (username === 'admin@mail.cl') {
+      localStorage.setItem('name', 'Admin');
+      localStorage.setItem('email', username);
+      localStorage.setItem('avatar', '../rat-king.png');
+    } else {
+      localStorage.setItem('name', 'Invitado');
+      localStorage.setItem('email', username);
+      localStorage.setItem('avatar', '../rat-user.jpg');
     }
     saveSessionData({ username });
-    navigate("/");
+    navigate('/');
   };
 
   const handleSubmit = (e) => {
@@ -56,24 +52,24 @@ function Login() {
 
     //usuarios falsos para pruebas
     const fictitiousUsers = [
-      { username: "admin@mail.cl", password: "admin123" },
-      { username: "user@mail.com", password: "123" },
+      { username: 'admin@mail.cl', password: 'admin123' },
+      { username: 'user@mail.com', password: '123' },
     ];
 
     const foundUser = fictitiousUsers.find(
       (user) =>
         user.username === formData.username &&
-        user.password === formData.password
+        user.password === formData.password,
     );
 
     if (foundUser) {
-      console.log("Inicio de sesión exitoso:", formData.username);
+      console.log('Inicio de sesión exitoso:', formData.username);
       handleSuccessfulLogin(formData.username);
     } else {
-      console.log("Inicio de sesión fallido: Credenciales incorrectas");
+      console.log('Inicio de sesión fallido: Credenciales incorrectas');
       setFormData({
-        username: "",
-        password: "",
+        username: '',
+        password: '',
       });
     }
   };
@@ -86,20 +82,14 @@ function Login() {
     });
   };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("email") != null) {
-  //     //window.location.href = "/profile";
-  //   }
-  // }, [0]);
-
   return (
     <div className="flex h-screen">
       <section
         className="hidden lg:flex lg:w-1/2 items-stretch justify-center"
         style={{
           backgroundImage: "url('/bg_ratoneriac.jpg')",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
         }}
       >
         <Link className="w-full" to="/"></Link>
@@ -129,7 +119,7 @@ function Login() {
                 }}
                 onError={() => {
                   onFailure();
-                  console.log("Login Failed");
+                  console.log('Login Failed');
                 }}
               />
             </GoogleOAuthProvider>
@@ -214,7 +204,7 @@ function Login() {
                   )}
                 </span>
                 <input
-                  type={isPasswordHidden ? "password" : "text"}
+                  type={isPasswordHidden ? 'password' : 'text'}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}

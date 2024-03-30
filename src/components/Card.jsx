@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import Tabs from "../components/Tabs";
-import Star from "./Star";
+import { useNavigate } from 'react-router-dom';
+import Tabs from '../components/Tabs';
+import Star from './Star';
 
 function Card({ id, img, title, rating, category }) {
   const navigate = useNavigate();
