@@ -1,33 +1,32 @@
-import { useState, useEffect } from "react";
-import io from "socket.io-client";
+import { useState, useEffect } from 'react';
+import io from 'socket.io-client';
 
-// conexión al servidor
-const socket = io("backchat-production-8699.up.railway.app", {
-  transports: ["websocket"],
+const socket = io('backchat-production-8699.up.railway.app', {
+  transports: ['websocket'],
   auth: {
-    token: localStorage.getItem("token"),
+    token: localStorage.getItem('token'),
   },
 });
 
 export default function Chat({ local }) {
-  const [nickname, setNickName] = useState("");
-  const [message, setMessage] = useState("");
+  const [nickname, setNickName] = useState('');
+  const [message, setMessage] = useState('');
   const [allMessages, setAllMessages] = useState([]);
   const [isFlashing, setIsFlashing] = useState(false);
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 1000);
-    setNickName("Rata-Anonima-" + random);
-    socket.emit("join", { room: local, name: nickname });
-  }, [0]);
+    setNickName('Rata-Anonima-' + random);
+    socket.emit('join', { room: local, name: nickname });
+  }, [local]);
 
   useEffect(() => {
-    socket.on("message", ({ body, from }) => {
+    socket.on('message', ({ body, from }) => {
       const msg = { body, from };
       setAllMessages((previousMessages) => [...previousMessages, msg]);
     });
     return () => {
-      socket.off("message");
+      socket.off('message');
     };
   }, []);
 
@@ -38,15 +37,15 @@ export default function Chat({ local }) {
   useEffect(() => {
     const interval1 = setInterval(() => {
       setIsFlashing((prevIsFlashing) => !prevIsFlashing);
-    }, 1000); // Intervalo corto de 1 segundo
+    }, 1000);
 
     const interval2 = setInterval(() => {
       setIsFlashing((prevIsFlashing) => !prevIsFlashing);
-    }, 5000); // Intervalo más largo de 5 segundos
+    }, 5000);
 
     const interval3 = setInterval(() => {
       setIsFlashing((prevIsFlashing) => !prevIsFlashing);
-    }, 10000); // Intervalo aún más largo de 10 segundos
+    }, 10000);
 
     return () => {
       clearInterval(interval1);
@@ -56,7 +55,7 @@ export default function Chat({ local }) {
   }, []);
 
   const scrollToBottom = () => {
-    const chatMessages = document.getElementById("chat-messages");
+    const chatMessages = document.getElementById('chat-messages');
     chatMessages.scrollTop = chatMessages.scrollHeight;
   };
 
@@ -71,20 +70,20 @@ export default function Chat({ local }) {
       body: message,
       from: nickname,
     };
-    socket.emit("message", { room: local, msg: newMessage });
-    setMessage("");
+    socket.emit('message', { room: local, msg: newMessage });
+    setMessage('');
   };
 
   return (
-    <section className="text-zinc-100 bg-pdark-grey h-full pt-10 pr-1 pb-2 pl-1 rounded-md max-w-lg  relative">
+    <section className="text-zinc-100 bg-pdark-grey h-full pt-10 pr-1 pb-10 pl-1 rounded-md max-w-lg  relative">
       <img
         src="https://i.ibb.co/rd2wT5d/Chat.png"
         alt="Chat Icon"
         className="absolute top-0 right-100 w-20 h-auto z-10"
         style={{
           filter: isFlashing
-            ? "drop-shadow(0 0 10px #ff6ac1) drop-shadow(0 0 20px #ff6ac1) drop-shadow(0 0 30px #ff6ac1)"
-            : "", // Si no está parpadeando, elimina el filtro
+            ? 'drop-shadow(0 0 10px #ff6ac1) drop-shadow(0 0 20px #ff6ac1) drop-shadow(0 0 30px #ff6ac1)'
+            : '', // Si no está parpadeando, elimina el filtro
         }}
       />
       <ul
@@ -95,7 +94,7 @@ export default function Chat({ local }) {
           <li
             key={index}
             className={`my-2 p-2 table text-sm rounded-md max-w-sm ${
-              msg.from === nickname ? "bg-black ml-auto" : "bg-pgrey"
+              msg.from === nickname ? 'bg-black ml-auto' : 'bg-pgrey'
             }`}
           >
             <b>{msg.from}</b>: {msg.body}

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import Button from "../components/ui/Button";
+import Button from '../components/ui/Button';
 
 function Avatar() {
-  const name = localStorage.getItem("name");
-  const email = localStorage.getItem("email");
-  const avatar = localStorage.getItem("avatar");
+  const name = localStorage.getItem('name');
+  const email = localStorage.getItem('email');
+  const avatar = localStorage.getItem('avatar');
   return (
     <>
       <div className="flex items-center justify-center mt-5 mb-5">

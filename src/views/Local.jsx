@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useCardContext } from "../context/CardContext.jsx";
-import Chat from "../components/Chat.jsx";
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useCardContext } from '../context/CardContext.jsx';
+import Chat from '../components/Chat.jsx';
 
 function Local() {
   const { cards } = useCardContext();
   const { id } = useParams();
   const [local, setLocal] = useState(() => {
-    const storedLocal = localStorage.getItem("local");
+    const storedLocal = localStorage.getItem('local');
     return storedLocal ? JSON.parse(storedLocal) : null;
   });
 
   useEffect(() => {
     const foundLocal = cards.find(
-      (card) => card.id.toString() === id.toString()
+      (card) => card.id.toString() === id.toString(),
     );
     setLocal(foundLocal);
-    localStorage.setItem("local", JSON.stringify(foundLocal));
+    localStorage.setItem('local', JSON.stringify(foundLocal));
   }, [id, cards]);
 
   if (!local) {
@@ -25,7 +25,7 @@ function Local() {
 
   return (
     <div className="lg:w-[1280px] w-full mx-auto relative mb-10 mt-10">
-      <div className="bg-pdark-grey w-5/6 inline-block align-top  mx-auto mx-auto px-10 py-10 ">
+      <div className="bg-pdark-grey w-5/6 inline-block align-top  mx-auto px-10 py-10 ">
         <h1 className="text-3xl sm:text-2xl font-bold mb-4 mt-2 text-center text-slate-100">
           {local.title}
         </h1>
@@ -48,10 +48,7 @@ function Local() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row">
-        {/* redes soliales */}
-        {/* menu */}
-      </div>
+      <div className="flex flex-row"></div>
     </div>
   );
 }

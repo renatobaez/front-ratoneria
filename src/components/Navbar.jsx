@@ -1,6 +1,6 @@
-import { useContext, useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useContext, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -10,23 +10,23 @@ const Navbar = () => {
   const navigation = [];
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  
-  const name = localStorage.getItem("name");
-  const avatar = localStorage.getItem("avatar");
+
+  const name = localStorage.getItem('name');
+  const avatar = localStorage.getItem('avatar');
 
   if(localStorage.getItem("email")) setIsLoggedIn(true);
   
   const handleLogout = () => {
-    console.log("Datos de localStorage antes de limpiar:", localStorage);
+    console.log('Datos de localStorage antes de limpiar:', localStorage);
     localStorage.clear();
-    console.log("Datos de localStorage después de limpiar:", localStorage);
+    console.log('Datos de localStorage después de limpiar:', localStorage);
     setIsLoggedIn(false);
   };
 
   return (
     <nav
       className="bg-pdark-grey font-sans text-xl py-2 px-4"
-      style={{ fontFamily: "Rajdhani, sans-serif" }}
+      style={{ fontFamily: 'Rajdhani, sans-serif' }}
     >
       <div className="flex items-center justify-evenly max-w-screen-xl mx-auto">
         <div className="flex items-center">
@@ -39,7 +39,7 @@ const Navbar = () => {
             <img
               ref={logoRef}
               className={`logo lg:w-[150px] w-[100px] transition-transform duration-300 transform hover:scale-110 ${
-                isHovered ? "hover:animate-neon" : ""
+                isHovered ? 'hover:animate-neon' : ''
               }`}
               src="https://i.ibb.co/Qf7cfXH/image.jpg"
               alt="Logo La RatonerIA"
@@ -47,7 +47,7 @@ const Navbar = () => {
                 isHovered
                   ? {
                       filter:
-                        "drop-shadow(0 0 10px #ff6ac1) drop-shadow(0 0 20px #ff6ac1) drop-shadow(0 0 30px #ff6ac1)",
+                        'drop-shadow(0 0 10px #ff6ac1) drop-shadow(0 0 20px #ff6ac1) drop-shadow(0 0 30px #ff6ac1)',
                     }
                   : null
               }
@@ -74,21 +74,23 @@ const Navbar = () => {
           ))}
           {isLoggedIn ? (
             <div className="flex items-center">
-            <Link className="flex items-center"
-              to="/profile"
+              <Link className="flex items-center" to="/profile">
+                <img
+                  src={avatar}
+                  className="flex-none w-12 h-12 rounded-full"
+                />
+                <span className="block text-xl text-white font-semibold p-2">
+                  {name}
+                </span>
+              </Link>
+              <Link
+                to="/"
+                className="text-white ml-4 rounded-md px-3 py-1 hover:bg-porange"
+                onClick={handleLogout}
               >
-              <img src={avatar} className="flex-none w-12 h-12 rounded-full" />
-              <span className="block text-xl text-white font-semibold p-2">
-              {name}
-            </span>
-            </Link>
-            <Link
-              to="/"
-              className="text-white ml-4 rounded-md px-3 py-1 hover:bg-porange"
-              onClick={handleLogout}
-            >
-              Cerrar Sesión
-            </Link></div>
+                Cerrar Sesión
+              </Link>
+            </div>
           ) : (
             
             <>
@@ -144,7 +146,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <div className={`md:hidden ${showMenu ? "block" : "hidden"}`}>
+      <div className={`md:hidden ${showMenu ? 'block' : 'hidden'}`}>
         <div className="flex items-center justify-center">
           {navigation.map((item, idx) => (
             <a
