@@ -11,6 +11,9 @@ const Navbar = () => {
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
+  const name = localStorage.getItem("name");
+  const avatar = localStorage.getItem("avatar");
+
   const handleLogout = () => {
     console.log("Datos de localStorage antes de limpiar:", localStorage);
     localStorage.clear();
@@ -68,13 +71,22 @@ const Navbar = () => {
             </a>
           ))}
           {isLoggedIn ? (
+            <div className="flex items-center">
+            <Link className="flex items-center"
+              to="/profile"
+              >
+              <img src={avatar} className="flex-none w-12 h-12 rounded-full" />
+              <span className="block text-xl text-white font-semibold p-2">
+              {name}
+            </span>
+            </Link>
             <Link
               to="/"
               className="text-white ml-4 rounded-md px-3 py-1 hover:bg-porange"
               onClick={handleLogout}
             >
               Cerrar Sesión
-            </Link>
+            </Link></div>
           ) : (
             <>
               <Link

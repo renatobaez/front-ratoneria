@@ -6,9 +6,9 @@ function Card({ id, img, title, rating, category }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log("esta card", id);
-    navigate(`./local?id=${id}`, id);
+    navigate(`/local/${id}`, id);
   };
+
   return (
     <div className="flex flex-col h-[600px]">
       <div
