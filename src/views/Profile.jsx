@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 function Profile() {
   return (
     <>
-      <Avatar>
-        <div></div>
-      </Avatar>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-10">
+      <div className="p-5">
+        <Avatar>
+          <div></div>
+        </Avatar>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-10 lg:w-[50%] w-[100%] mx-auto">
         <Link
           to="/local/d46fa366-bad5-48ea-90b3-62d9b0e30c58"
           className="transform hover:scale-105"
