@@ -39,7 +39,7 @@ function Local() {
             className=" bg-pdark-grey h-[500px] p-1 rounded-md w-[400px] flex flex-col"
             id="chat"
           >
-            <Chat />
+            <Chat local={local.id.toString()} />
           </div>
           <div className=" w-[400px] mt-10 bg-pdark-grey p-10  rounded-md  text-center">
             <Link to="/">

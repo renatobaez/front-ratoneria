@@ -9,7 +9,7 @@ const socket = io("backchat-production-8699.up.railway.app", {
   },
 });
 
-export default function Chat(local) {
+export default function Chat({ local }) {
   const [nickname, setNickName] = useState("");
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
