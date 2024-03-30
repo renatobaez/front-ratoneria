@@ -6,9 +6,7 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const logoRef = useRef(null);
-
   const navigation = [];
-
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   const name = localStorage.getItem('name');
