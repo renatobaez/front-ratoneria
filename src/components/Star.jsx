@@ -6,7 +6,6 @@ function Star({ paramRating }) {
   const [hover, setHover] = useState(null);
 
   useEffect(() => {
-    // Sincroniza el estado interno con la propiedad paramRating
     setRating(paramRating);
   }, [paramRating]);
 
