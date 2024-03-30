@@ -27,20 +27,17 @@ function Local() {
 
   return (
     <div className="lg:w-[1280px] w-full  mx-auto relative mb-10 mt-10">
-      <div className="bg-pdark-grey w-5/6 inline-block w-full h-full align-top  mx-auto px-10 py-10 ">
+      <div className="bg-pdark-grey inline-block w-full h-full align-top  mx-auto px-10 py-10 ">
         <h1 className="text-3xl sm:text-2xl font-bold mb-4 mt-2 text-center text-slate-100">
           {local.title}
         </h1>
       </div>
       <div className="flex flex-row justify-evenly  mt-10">
-        <div className="w-[50%] flex flex-col  items-center ">
-          <img
-            className="mx-auto  rounded-md"
-            src={local.img}
-            width={500}
-            alt=""
-          />
-          <div className="mt-10  w-[90%] ">
+        <div className="w-[50%] flex flex-col  items-center">
+          <div className="h-[600px] w-[600px]">
+            <img className="mx-auto h-full rounded-md" src={local.img} alt="" />
+          </div>
+          <div className="mt-10 w-[90%] ">
             <Tabs />
           </div>
         </div>
