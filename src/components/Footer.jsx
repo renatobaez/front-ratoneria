@@ -1,12 +1,11 @@
-import { FaTwitter, FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
+import { FaTwitter, FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
 
 const Footer = () => {
-  // Cree un instagram temporal
   const socialLinks = {
-    instagram: "https://www.instagram.com/laratoneria1/",
-    twitter: "https://twitter.com/tu_cuenta",
-    facebook: "https://www.facebook.com/tu_cuenta",
-    youtube: "https://www.youtube.com/tu_cuenta",
+    instagram: 'https://www.instagram.com/laratoneria1/',
+    twitter: 'https://twitter.com/tu_cuenta',
+    facebook: 'https://www.facebook.com/tu_cuenta',
+    youtube: 'https://www.youtube.com/tu_cuenta',
   };
 
   return (
@@ -24,16 +23,13 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-2">
-        <ul className="flex justify-center space-x-2">
-          {/* links de nosotros, contacto cosas asi */}
-        </ul>
+        <ul className="flex justify-center space-x-2"></ul>
       </div>
       <div className="mt-2 flex justify-center items-center">
         <p className="text-center mr-2 text-xs sm:text-sm lg:text-base p-2">
           &copy; 2024 La RatonerIA all rights reserved.
         </p>
         <div className="flex">
-          {/* Icono de Instagram */}
           <a
             href={socialLinks.instagram}
             target="_blank"
@@ -42,7 +38,6 @@ const Footer = () => {
           >
             <FaInstagram size={16} />
           </a>
-          {/* Icono de Twitter */}
           <a
             href={socialLinks.twitter}
             target="_blank"
@@ -51,7 +46,6 @@ const Footer = () => {
           >
             <FaTwitter size={16} />
           </a>
-          {/* Icono de Facebook */}
           <a
             href={socialLinks.facebook}
             target="_blank"
@@ -60,7 +54,6 @@ const Footer = () => {
           >
             <FaFacebook size={16} />
           </a>
-          {/* Icono de Youtube */}
           <a
             href={socialLinks.youtube}
             target="_blank"

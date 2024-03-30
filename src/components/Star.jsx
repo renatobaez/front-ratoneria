@@ -1,9 +1,13 @@
-import { useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { useState, useEffect } from 'react';
+import { FaStar } from 'react-icons/fa';
 
 function Star({ paramRating }) {
   const [rating, setRating] = useState(paramRating);
   const [hover, setHover] = useState(null);
+
+  useEffect(() => {
+    setRating(paramRating);
+  }, [paramRating]);
 
   const handleClick = (newRating) => {
     setRating(newRating);
@@ -25,7 +29,7 @@ function Star({ paramRating }) {
             <FaStar
               className="cursor-pointer"
               size={35}
-              color={currentRating <= (hover || rating) ? "#ffa31a" : "#808080"}
+              color={currentRating <= (hover || rating) ? '#ffa31a' : '#808080'}
               onMouseEnter={() => setHover(currentRating)}
               onMouseLeave={() => setHover(null)}
             />

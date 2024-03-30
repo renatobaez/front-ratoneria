@@ -1,6 +1,5 @@
-import Card from "./Card";
-import { useState } from "react";
-import { useCardContext } from "../context/CardContext";
+import Card from './Card';
+import { useCardContext } from '../context/CardContext';
 
 const Gallery = () => {
   const { cards, filters, setFilters } = useCardContext();
@@ -11,9 +10,9 @@ const Gallery = () => {
 
   const filteredCards = cards.filter((card) => {
     const passesCategoryFilter =
-      filters.category === "" || card.category === filters.category;
+      filters.category === '' || card.category === filters.category;
     const passesRatingFilter =
-      filters.rating === "" || card.rating.toString() === filters.rating;
+      filters.rating === '' || card.rating.toString() === filters.rating;
     return passesCategoryFilter && passesRatingFilter;
   });
 
