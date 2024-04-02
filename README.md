@@ -10,6 +10,6 @@ INTEGRANTES:
 • Javier Figueroa
 • Camilo Rojas
 
-para probarlo:
+para pruebas:
 
 - npm run dev
