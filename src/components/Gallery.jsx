@@ -3,6 +3,7 @@ import { useCardContext } from '../context/CardContext';
 
 const Gallery = () => {
   const { cards, filters, setFilters } = useCardContext();
+  console.log(cards);
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
@@ -48,10 +49,10 @@ const Gallery = () => {
           <Card
             key={card.id}
             id={card.id}
-            title={card.title}
-            img={card.img}
+            title={card.name}
+            img={card.image}
             rating={card.rating}
-            category={card.category}
+            category={card.category_id}
           />
         ))}
       </div>

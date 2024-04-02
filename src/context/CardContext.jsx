@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
+import axios from 'axios';
 
 const CardsContext = createContext();
 
@@ -7,18 +8,13 @@ export const CardProvider = ({ children }) => {
   const [filters, setFilters] = useState({ category: '', rating: '' });
 
   const getShops = async () => {
-    const response = await fetch('../shop.json');
-    if (!response.ok) return;
     try {
-      const response = await fetch('../shop.json');
-      if (!response.ok) {
-        throw new Error('Error de conexion ');
-      }
-      const shops = await response.json();
+      const response = await axios.get('http://localhost:3000/api/v1/shops');
+      const shops = response.data;
       setCards(shops);
       return shops;
     } catch (error) {
-      console.error('error en el fetch');
+      console.error('Error en la solicitud:', error);
       throw error;
     }
   };
