@@ -1,8 +1,13 @@
-# React + Vite
+# Esto es un proyecto final para Desafio Latam
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+INTEGRANTES:
 
-Currently, two official plugins are available:
+• Tomas Muñoz
+• Sam Tang
+• Renato Baez
+• Javier Figueroa
+• Camilo Rojas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+para pruebas:
+
+npm run dev
