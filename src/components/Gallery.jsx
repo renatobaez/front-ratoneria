@@ -1,8 +1,9 @@
 import Card from './Card';
-import { useCardContext } from '../context/CardContext';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const Gallery = () => {
-  const { cards, filters, setFilters } = useCardContext();
+  const { cards, filters, setFilters } = useContext(AppContext);
   console.log(cards);
   const handleFilterChange = (e) => {
     const { name, value } = e.target;

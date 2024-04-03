@@ -1,9 +1,10 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
-const CardsContext = createContext();
+export const AppContext = createContext();
 
-export const CardProvider = ({ children }) => {
+export const AppProvider = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cards, setCards] = useState([]);
   const [filters, setFilters] = useState({ category: '', rating: '' });
 
@@ -24,14 +25,21 @@ export const CardProvider = ({ children }) => {
   }, []);
 
   return (
-    <CardsContext.Provider value={{ cards, setCards, filters, setFilters }}>
+    <AppContext.Provider
+      value={{
+        isLoggedIn,
+        setIsLoggedIn,
+        cards,
+        setCards,
+        filters,
+        setFilters,
+      }}
+    >
       {children}
-    </CardsContext.Provider>
+    </AppContext.Provider>
   );
 };
 
-export const useCardContext = () => {
-  return useContext(CardsContext);
+export const useAppContext = () => {
+  return useContext(AppContext);
 };
-
-export default CardsContext;

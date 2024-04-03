@@ -1,13 +1,13 @@
 import { useContext, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { AppContext } from '../context/AppContext';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const logoRef = useRef(null);
   const navigation = [];
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
 
   const name = localStorage.getItem('name');
   const avatar = localStorage.getItem('avatar');
