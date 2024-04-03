@@ -7,18 +7,18 @@ const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
   const logoRef = useRef(null);
   const navigation = [];
-  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
+  const { isLoggedIn, login, logout } = useContext(AppContext);
 
   const name = localStorage.getItem('name');
   const avatar = localStorage.getItem('avatar');
 
-  if (localStorage.getItem('email')) setIsLoggedIn(true);
+  if (localStorage.getItem('email')) login();
 
   const handleLogout = () => {
     console.log('Datos de localStorage antes de limpiar:', localStorage);
     localStorage.clear();
     console.log('Datos de localStorage después de limpiar:', localStorage);
-    setIsLoggedIn(false);
+    logout();
   };
 
   return (

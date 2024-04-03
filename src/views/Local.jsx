@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useCardContext } from '../context/CardContext.jsx';
+import { AppContext } from '../context/AppContext';
 import Chat from '../components/Chat.jsx';
 import SocialLinks from '../components/ui/Rrss.jsx';
 import Tabs from '../components/Tabs.jsx';
 import Star from '../components/Star.jsx';
 
 function Local() {
-  const { cards } = useCardContext();
+  const { cards } = useContext(AppContext);
   const { id } = useParams();
   const [local, setLocal] = useState(() => {
     const storedLocal = localStorage.getItem('local');

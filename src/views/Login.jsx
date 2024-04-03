@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import { AuthContext } from '../context/AuthContext';
+import { AppContext } from '../context/AppContext';
 import { jwtDecode } from 'jwt-decode';
 
 function Login() {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { login } = useContext(AppContext);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -17,7 +17,7 @@ function Login() {
     '959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com';
 
   const onSuccess = (res) => {
-    setIsLoggedIn(true);
+    login();
     const { name, email, picture } = jwtDecode(res.credential);
     localStorage.setItem('name', name);
     localStorage.setItem('email', email);
@@ -33,7 +33,7 @@ function Login() {
   };
 
   const handleSuccessfulLogin = (username) => {
-    setIsLoggedIn(true);
+    login();
     if (username === 'admin@mail.cl') {
       localStorage.setItem('name', 'Admin');
       localStorage.setItem('email', username);

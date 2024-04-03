@@ -3,11 +3,11 @@ import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Gallery = () => {
-  const { cards, filters, setFilters } = useContext(AppContext);
+  const { cards, filters, updateFilters } = useContext(AppContext);
   console.log(cards);
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    setFilters({ ...filters, [name]: value });
+    updateFilters({ ...filters, [name]: value });
   };
 
   const filteredCards = cards.filter((card) => {

@@ -8,6 +8,22 @@ export const AppProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
   const [filters, setFilters] = useState({ category: '', rating: '' });
 
+  const login = () => {
+    setIsLoggedIn(true);
+  };
+
+  const logout = () => {
+    setIsLoggedIn(false);
+  };
+
+  const updateCards = (newCards) => {
+    setCards(newCards);
+  };
+
+  const updateFilters = (newFilters) => {
+    setFilters(newFilters);
+  };
+
   const getShops = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/v1/shops');
@@ -28,11 +44,12 @@ export const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         isLoggedIn,
-        setIsLoggedIn,
+        login,
+        logout,
         cards,
-        setCards,
+        updateCards,
         filters,
-        setFilters,
+        updateFilters,
       }}
     >
       {children}
