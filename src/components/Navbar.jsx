@@ -19,8 +19,6 @@ const Navbar = ({ handleLogin }) => {
     }
   }, [handleLogin]);
 
-  console.log(localStorage);
-
   const handleLogout = () => {
     console.log('Datos de localStorage antes de limpiar:', localStorage);
     localStorage.clear();

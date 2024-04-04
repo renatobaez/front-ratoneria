@@ -28,28 +28,33 @@ function Login() {
     console.log('Login failed: res:', res);
   };
 
-  // const saveSessionData = (userData) => {
-  //   localStorage.setItem('userData', JSON.stringify(userData));
-  // };
+  const saveSessionData = (userData) => {
+    localStorage.setItem('userData', JSON.stringify(userData));
+  };
 
-  const handleSuccessfulLogin = (user) => {
+  const handleSuccessfulLogin = (username) => {
     login();
-    localStorage.setItem('name', user.nickname);
-    localStorage.setItem('email', user.email);
-    localStorage.setItem('id', user.id);
-    localStorage.setItem('creado', user.created_at);
-    localStorage.setItem('avatar', '../rat-king.png');
+    if (username === 'admin@mail.cl') {
+      localStorage.setItem('name', 'Admin');
+      localStorage.setItem('email', username);
+      localStorage.setItem('avatar', '../rat-king.png');
+    } else {
+      localStorage.setItem('name', 'Invitado');
+      localStorage.setItem('email', username);
+      localStorage.setItem('avatar', '../rat-user.jpg');
+    }
+    saveSessionData({ username });
     navigate('/');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!formData.username || !formData.password) {
       console.error('Por favor ingresa un correo electrónico y una contraseña');
       return;
     }
-
+  
     try {
       const response = await fetch('http://localhost:3000/api/v1/users');
       if (!response.ok) {
@@ -58,12 +63,13 @@ function Login() {
       const users = await response.json();
       const foundUser = users.find(
         (user) =>
-          user.email === formData.username &&
+          user.email === formData.email &&
           user.password === formData.password,
       );
-
+  
       if (foundUser) {
-        handleSuccessfulLogin(foundUser);
+        console.log('Inicio de sesión exitoso:', formData.email);
+        handleSuccessfulLogin(formData.email);
       } else {
         console.log('Inicio de sesión fallido: Credenciales incorrectas');
         setFormData({
@@ -75,6 +81,7 @@ function Login() {
       console.error('Error:', error);
     }
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;

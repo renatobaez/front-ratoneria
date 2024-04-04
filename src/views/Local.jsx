@@ -8,8 +8,6 @@ import Star from '../components/Star.jsx';
 
 function Local() {
   const { cards } = useContext(AppContext);
-  console.log(cards);
-
   const { id } = useParams();
   const [local, setLocal] = useState(() => {
     const storedLocal = localStorage.getItem('local');
