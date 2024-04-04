@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const isSubmit = (data) => console.log(data);
+//const isSubmit = (data) => console.log(data);
 
 function Register() {
   const {
@@ -12,6 +13,23 @@ function Register() {
   } = useForm();
 
   const [isPasswordHidden, setPasswordHidden] = useState(true);
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const response = await axios.post('http://localhost:3000/api/v1/users', {
+        first_name: data.nombre,
+        last_name: data.apellido,
+        email: data.mail,
+        nickname: data.nickname,
+        password: data.pass,
+      }); // Realiza la solicitud POST a la ruta /api/v1/users
+      console.log(response.data); // Maneja la respuesta del servidor como desees
+      //isSubmit(data); // Llama a la función isSubmit y pasa los datos del formulario
+    } catch (error) {
+      console.error('Error al enviar la solicitud:', error);
+    }
+  };
 
   return (
     <div className="flex h-screen">
@@ -45,7 +63,7 @@ function Register() {
             Ingrese sus datos
           </h1>
 
-          <form onSubmit={handleSubmit(isSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
               {...register('nombre', { required: true })}
