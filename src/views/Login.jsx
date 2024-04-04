@@ -33,16 +33,12 @@ function Login() {
   };
 
   const handleSuccessfulLogin = (username) => {
+    console.log('user pasandose por aca', username);
     login();
-    if (username === 'admin@mail.cl') {
-      localStorage.setItem('name', 'Admin');
-      localStorage.setItem('email', username);
-      localStorage.setItem('avatar', '../rat-king.png');
-    } else {
-      localStorage.setItem('name', 'Invitado');
-      localStorage.setItem('email', username);
-      localStorage.setItem('avatar', '../rat-user.jpg');
-    }
+    console.log(username);
+    localStorage.setItem('name', username.nickname);
+    localStorage.setItem('email', username.email);
+    localStorage.setItem('avatar', '../rat-king.png');
     saveSessionData({ username });
     navigate('/');
   };
@@ -68,8 +64,7 @@ function Login() {
       );
 
       if (foundUser) {
-        console.log('Inicio de sesión exitoso:', formData.username);
-        handleSuccessfulLogin(formData.username);
+        handleSuccessfulLogin(foundUser);
       } else {
         console.log('Inicio de sesión fallido: Credenciales incorrectas');
         setFormData({
