@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 //const isSubmit = (data) => console.log(data);
@@ -10,9 +10,14 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
   const [isPasswordHidden, setPasswordHidden] = useState(true);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  const password = watch('pass');
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -26,6 +31,10 @@ function Register() {
       }); // Realiza la solicitud POST a la ruta /api/v1/users
       console.log(response.data); // Maneja la respuesta del servidor como desees
       //isSubmit(data); // Llama a la función isSubmit y pasa los datos del formulario
+      setRegistrationSuccess(true);
+      setTimeout(() => {
+        navigate('/login');
+      }, 3000);
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
     }
@@ -105,15 +114,24 @@ function Register() {
                 />
               </svg>
               <input
-                type="mail"
-                {...register('mail', { required: true })}
+                type="email"
+                {...register('mail', {
+                  required: true,
+                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Expresión regular para validar el formato de correo electrónico
+                })}
                 placeholder="E-mail"
                 className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg mb-2"
               />
-              {errors.mail && <span>Campo obligatorio</span>}
+              {errors.mail && errors.mail.type === 'required' && (
+                <span>Campo obligatorio</span>
+              )}
+              {errors.mail && errors.mail.type === 'pattern' && (
+                <span>Formato de correo electrónico inválido</span>
+              )}
             </div>
             <div className="relative max-w-xs">
               <button
+                type="button"
                 className="text-gray-400 absolute right-3  mt-2 my-auto active:text-gray-600"
                 onClick={() => setPasswordHidden(!isPasswordHidden)}
               >
@@ -155,7 +173,7 @@ function Register() {
                 )}
               </button>
               <input
-                type={isPasswordHidden ? 'password' : 'password'}
+                type={isPasswordHidden ? 'password' : 'text'}
                 {...register('pass', { required: true })}
                 placeholder="Contraseña"
                 autoComplete="off"
@@ -165,6 +183,7 @@ function Register() {
             </div>
             <div className="relative max-w-xs ">
               <button
+                type="button"
                 className="text-gray-400 absolute right-3  mt-2 my-auto active:text-gray-600"
                 onClick={() => setPasswordHidden(!isPasswordHidden)}
               >
@@ -206,14 +225,22 @@ function Register() {
                 )}
               </button>
               <input
-                type={isPasswordHidden ? 'password' : 'password'}
+                type={isPasswordHidden ? 'password' : 'text'}
                 name="confirmPassword"
                 autoComplete="off"
-                {...register('confirmPass', { required: true })}
+                {...register('confirmPass', {
+                  required: true,
+                  validate: (value) => value === password, // Validación personalizada para verificar que la confirmación de contraseña sea igual a la contraseña
+                })}
                 placeholder="Confirmar Contraseña"
                 className="w-full pr-12 pl-3 py-2 placeholder:text-gray-500 bg-transparent  outline-none border focus:border-porange  shadow-sm rounded-lg mb-2"
               />
-              {errors.confirmPass && <span>Campo obligatorio</span>}
+              {errors.confirmPass && errors.confirmPass.type === 'required' && (
+                <span>Campo obligatorio</span>
+              )}
+              {errors.confirmPass && errors.confirmPass.type === 'validate' && (
+                <span>Las contraseñas no coinciden</span>
+              )}
             </div>
             <div className="flex flex-col items-center">
               <div>
@@ -224,6 +251,13 @@ function Register() {
               </div>
             </div>
           </form>
+          {registrationSuccess && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+              <div className="bg-white p-4 rounded shadow-md">
+                <p className="text-green-600 font-bold">¡Registro exitoso!</p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>
