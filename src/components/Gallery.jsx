@@ -4,6 +4,7 @@ import { AppContext } from '../context/AppContext';
 
 const Gallery = () => {
   const { cards, filters, updateFilters } = useContext(AppContext);
+  console.log(cards);
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     updateFilters({ ...filters, [name]: value });
@@ -11,15 +12,18 @@ const Gallery = () => {
 
   const filteredCards = cards.filter((card) => {
     const passesCategoryFilter =
-      filters.category === '' || card.category === filters.category;
+      filters.category === '' || card.category_name === filters.category;
     const passesRatingFilter =
-      filters.rating === '' || card.rating.toString() === filters.rating;
-    return passesCategoryFilter && passesRatingFilter;
+      filters.rating === '' ||
+      parseFloat(card.rating) === parseFloat(filters.rating);
+    const passesPricesFilter =
+      filters.price === '' || card.price === filters.price;
+    return passesCategoryFilter && passesRatingFilter && passesPricesFilter;
   });
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex w-[95%] text-white justify-center space-x-4 bg-porange p-2 rounded-md">
+      <div className="flex w-[95%] text-white justify-center space-x-4 bg-porange p-2 rounded-md ">
         <select
           className="px-4 py-2 bg-pgrey border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-white"
           name="category"
@@ -38,10 +42,21 @@ const Gallery = () => {
         >
           <option value="">Valoracion</option>
           <option value="5">5 Estrellas</option>
-          <option value="4">4 Estrellas</option>
+          <option value="4">4Estrellas</option>
           <option value="3">3 Estrellas</option>
           <option value="2">2 Estrellas</option>
           <option value="1">1 Estrellas</option>
+        </select>
+        <select
+          className="px-4 py-2 bg-pgrey border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-white"
+          name="Precio"
+          value={filters.price}
+          onChange={handleFilterChange}
+        >
+          <option value="">Precio</option>
+          <option value="1">$</option>
+          <option value="2">$$</option>
+          <option value="3">$$$</option>
         </select>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5 p-10">
