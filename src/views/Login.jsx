@@ -47,30 +47,38 @@ function Login() {
     navigate('/');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //usuarios falsos para pruebas
-    const fictitiousUsers = [
-      { username: 'admin@mail.cl', password: 'admin123' },
-      { username: 'user@mail.com', password: '123' },
-    ];
+    if (!formData.username || !formData.password) {
+      console.error('Por favor ingresa un correo electrónico y una contraseña');
+      return;
+    }
 
-    const foundUser = fictitiousUsers.find(
-      (user) =>
-        user.username === formData.username &&
-        user.password === formData.password,
-    );
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/users');
+      if (!response.ok) {
+        throw new Error('Error al obtener usuarios');
+      }
+      const users = await response.json();
+      const foundUser = users.find(
+        (user) =>
+          user.email === formData.username &&
+          user.password === formData.password,
+      );
 
-    if (foundUser) {
-      console.log('Inicio de sesión exitoso:', formData.username);
-      handleSuccessfulLogin(formData.username);
-    } else {
-      console.log('Inicio de sesión fallido: Credenciales incorrectas');
-      setFormData({
-        username: '',
-        password: '',
-      });
+      if (foundUser) {
+        console.log('Inicio de sesión exitoso:', formData.username);
+        handleSuccessfulLogin(formData.username);
+      } else {
+        console.log('Inicio de sesión fallido: Credenciales incorrectas');
+        setFormData({
+          username: '',
+          password: '',
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 

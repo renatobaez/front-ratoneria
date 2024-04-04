@@ -4,7 +4,6 @@ import { AppContext } from '../context/AppContext';
 
 const Gallery = () => {
   const { cards, filters, updateFilters } = useContext(AppContext);
-  console.log(cards);
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     updateFilters({ ...filters, [name]: value });
