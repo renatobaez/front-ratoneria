@@ -6,7 +6,7 @@ function Home() {
   let slides = ['/g1.jpg', '/g2.jpg', '/g3.jpg', '/g4.jpg'];
 
   return (
-    <div className="flex flex-col lg:w-[1280px] w-full mx-auto relative mb-10 mt-10">
+    <div className="flex flex-col mx-auto relative mb-10 mt-10 max-w-[1280px]">
       <Carousel slides={slides} />
       <Searchbar />
       <Gallery />

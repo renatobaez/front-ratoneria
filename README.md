@@ -1,6 +1,4 @@
-# RATONERIA
-
-Esto es un proyecto final para Desafio Latam
+# Esto es un proyecto final para Desafio Latam
 
 INTEGRANTES:
 
@@ -12,4 +10,4 @@ INTEGRANTES:
 
 para pruebas:
 
-- npm run dev
+npm run dev

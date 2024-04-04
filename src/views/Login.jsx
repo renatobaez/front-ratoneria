@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import { AuthContext } from '../context/AuthContext';
+import { AppContext } from '../context/AppContext';
 import { jwtDecode } from 'jwt-decode';
 
 function Login() {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { login } = useContext(AppContext);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -17,7 +17,7 @@ function Login() {
     '959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com';
 
   const onSuccess = (res) => {
-    setIsLoggedIn(true);
+    login();
     const { name, email, picture } = jwtDecode(res.credential);
     localStorage.setItem('name', name);
     localStorage.setItem('email', email);
@@ -33,7 +33,7 @@ function Login() {
   };
 
   const handleSuccessfulLogin = (username) => {
-    setIsLoggedIn(true);
+    login();
     if (username === 'admin@mail.cl') {
       localStorage.setItem('name', 'Admin');
       localStorage.setItem('email', username);
@@ -47,30 +47,38 @@ function Login() {
     navigate('/');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //usuarios falsos para pruebas
-    const fictitiousUsers = [
-      { username: 'admin@mail.cl', password: 'admin123' },
-      { username: 'user@mail.com', password: '123' },
-    ];
+    if (!formData.username || !formData.password) {
+      console.error('Por favor ingresa un correo electrónico y una contraseña');
+      return;
+    }
 
-    const foundUser = fictitiousUsers.find(
-      (user) =>
-        user.username === formData.username &&
-        user.password === formData.password,
-    );
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/users');
+      if (!response.ok) {
+        throw new Error('Error al obtener usuarios');
+      }
+      const users = await response.json();
+      const foundUser = users.find(
+        (user) =>
+          user.email === formData.username &&
+          user.password === formData.password,
+      );
 
-    if (foundUser) {
-      console.log('Inicio de sesión exitoso:', formData.username);
-      handleSuccessfulLogin(formData.username);
-    } else {
-      console.log('Inicio de sesión fallido: Credenciales incorrectas');
-      setFormData({
-        username: '',
-        password: '',
-      });
+      if (foundUser) {
+        console.log('Inicio de sesión exitoso:', formData.username);
+        handleSuccessfulLogin(formData.username);
+      } else {
+        console.log('Inicio de sesión fallido: Credenciales incorrectas');
+        setFormData({
+          username: '',
+          password: '',
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 

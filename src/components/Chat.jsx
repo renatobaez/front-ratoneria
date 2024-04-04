@@ -9,14 +9,14 @@ const socket = io('backchat-production-8699.up.railway.app', {
 });
 
 export default function Chat({ local }) {
-  const [nickname, setNickName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [message, setMessage] = useState('');
   const [allMessages, setAllMessages] = useState([]);
   const [isFlashing, setIsFlashing] = useState(false);
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 1000);
-    setNickName('Rata-Anonima-' + random);
+    setNickname('Rata-Anonima-' + random);
     socket.emit('join', { room: local, name: nickname });
   }, [local]);
 

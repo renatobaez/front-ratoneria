@@ -61,7 +61,7 @@ function Searchbar() {
   };
 
   return (
-    <div className="w-full px-4 mx-auto mt-12 p-5">
+    <div className="w-[95%] mx-auto mt-12">
       <div className="flex gap-2">
         <input
           value={inputValue}

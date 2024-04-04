@@ -1,24 +1,29 @@
-import { useContext, useState, useRef } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { AppContext } from '../context/AppContext';
 
-const Navbar = () => {
+const Navbar = ({ handleLogin }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const logoRef = useRef(null);
   const navigation = [];
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, logout } = useContext(AppContext);
 
   const name = localStorage.getItem('name');
   const avatar = localStorage.getItem('avatar');
 
-  if (localStorage.getItem('email')) setIsLoggedIn(true);
+  useEffect(() => {
+    const email = localStorage.getItem('email');
+    if (email) {
+      handleLogin();
+    }
+  }, [handleLogin]);
 
   const handleLogout = () => {
     console.log('Datos de localStorage antes de limpiar:', localStorage);
     localStorage.clear();
     console.log('Datos de localStorage después de limpiar:', localStorage);
-    setIsLoggedIn(false);
+    logout();
   };
 
   return (

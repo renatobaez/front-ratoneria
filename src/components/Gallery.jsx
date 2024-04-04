@@ -1,11 +1,12 @@
 import Card from './Card';
-import { useCardContext } from '../context/CardContext';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const Gallery = () => {
-  const { cards, filters, setFilters } = useCardContext();
+  const { cards, filters, updateFilters } = useContext(AppContext);
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    setFilters({ ...filters, [name]: value });
+    updateFilters({ ...filters, [name]: value });
   };
 
   const filteredCards = cards.filter((card) => {
@@ -17,8 +18,8 @@ const Gallery = () => {
   });
 
   return (
-    <div>
-      <div className="flex m-10 text-white justify-center space-x-4 my-4 bg-porange p-2 rounded-md">
+    <div className="flex flex-col items-center">
+      <div className="flex w-[95%] text-white justify-center space-x-4 bg-porange p-2 rounded-md">
         <select
           className="px-4 py-2 bg-pgrey border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-white"
           name="category"
@@ -43,15 +44,15 @@ const Gallery = () => {
           <option value="1">1 Estrellas</option>
         </select>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 p-10">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5 p-10">
         {filteredCards.map((card) => (
           <Card
-            key={card.id}
-            id={card.id}
-            title={card.title}
-            img={card.img}
+            key={card.shop_id}
+            id={card.shop_id}
+            title={card.shop_name}
+            img={card.image}
             rating={card.rating}
-            category={card.category}
+            category={card.category_id}
           />
         ))}
       </div>
