@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { AppContext } from '../context/AppContext';
 
 function Post() {
   const [userId] = useState(localStorage.getItem('id'));
   const token = localStorage.getItem('token');
+  const { addShop } = useContext(AppContext);
 
   const {
     register,
@@ -40,6 +42,7 @@ function Post() {
       if (response.status === 200) {
         // Manejar la respuesta exitosa
         console.log('Local creado exitosamente');
+        addShop(response.data);
       } else {
         // Manejar errores de respuesta
         console.error('Error al crear el local');
