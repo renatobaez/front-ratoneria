@@ -4,7 +4,7 @@ import axios from 'axios';
 function Tabs({ localId }) {
   console.log('id desde tabs', localId);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
-  const [consumedData, setConsumedData] = useState(null);
+  const [consumedData, setConsumedData] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,12 +21,13 @@ function Tabs({ localId }) {
     fetchData();
   }, [localId]);
 
-  console.log('este es el array', consumedData[0].price_paid);
-
   const tabsData = [
     {
       label: 'Precios',
-      content: consumedData[0].price_paid,
+      content:
+        consumedData && consumedData[0]
+          ? consumedData[0].price_paid
+          : 'Loading...',
     },
     {
       label: 'Comentarios',
@@ -54,7 +55,7 @@ function Tabs({ localId }) {
         })}
       </div>
       <div className="py-4 ml-4">
-        <p>{tabsData[activeTabIndex].content}</p>
+        <p>{tabsData[activeTabIndex].content || 'Loading...'}</p>
       </div>
     </div>
   );
