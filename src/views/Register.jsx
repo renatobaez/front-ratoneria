@@ -15,6 +15,8 @@ function Register() {
 
   const [isPasswordHidden, setPasswordHidden] = useState(true);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [registrationError, setRegistrationError] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const password = watch('pass');
@@ -36,8 +38,19 @@ function Register() {
         navigate('/login');
       }, 3000);
     } catch (error) {
-      console.error('Error al enviar la solicitud:', error);
+      if (error.response && error.response.status === 409) {
+        setRegistrationError('El correo electrónico ya ha sido registrado.');
+        setShowAlert(true);
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 3000);
+      } else {
+        console.log('Error al enviar la solicitud:', error);
+      }
     }
+  };
+  const closeAlert = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -255,6 +268,19 @@ function Register() {
             <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
               <div className="bg-white p-4 rounded shadow-md">
                 <p className="text-green-600 font-bold">¡Registro exitoso!</p>
+              </div>
+            </div>
+          )}
+          {showAlert && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+              <div className="bg-white p-4 rounded shadow-md">
+                <p className="text-red-600 font-bold">{registrationError}</p>
+                <button
+                  onClick={closeAlert}
+                  className="text-sm text-gray-500 mt-2 focus:outline-none"
+                >
+                  Cerrar
+                </button>
               </div>
             </div>
           )}
