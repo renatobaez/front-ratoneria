@@ -66,6 +66,7 @@ function Login() {
       login();
       localStorage.setItem('token', token);
       localStorage.setItem('name', name);
+      localStorage.setItem('id', user.id);
       localStorage.setItem('avatar', '../rat-king.png');
       navigate('/');
     } catch (error) {

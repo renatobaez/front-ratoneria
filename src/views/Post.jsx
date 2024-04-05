@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function Post() {
   const [userId] = useState(localStorage.getItem('id'));
+  const token = localStorage.getItem('token');
 
   const {
     register,
@@ -16,14 +17,24 @@ function Post() {
       const formData = {
         name: data.name,
         address: data.address,
-        category_id: data.category_id,
+        category_id: parseInt(data.category_id),
         image: data.image,
-        id: userId,
+        user_id: userId,
       };
+
       console.log(formData);
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      };
+
       const response = await axios.post(
         'http://localhost:3000/api/v1/shops',
         formData,
+        config,
       );
 
       if (response.status === 200) {
@@ -66,8 +77,8 @@ function Post() {
             className="w-[50%] pr-12 pl-3 py-2 bg-black outline-none border focus:border-porange shadow-sm rounded-lg text-white"
           >
             <option value="">Seleccione una categoría</option>
-            <option value="1">Bar</option>
-            <option value="2">Restaurant</option>
+            <option value={1}>Bar</option>
+            <option value={2}>Restaurant</option>
           </select>
           {errors.categoria && <span>Seleccione una categoría</span>}
 
