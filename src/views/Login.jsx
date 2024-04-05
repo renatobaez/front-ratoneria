@@ -1,8 +1,9 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+//import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { AppContext } from '../context/AppContext';
-import { jwtDecode } from 'jwt-decode';
+//import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
 
 function Login() {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -12,35 +13,33 @@ function Login() {
     password: '',
   });
 
-  const navigate = useNavigate();
-  const clientID =
-    '959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com';
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-  const onSuccess = (res) => {
-    login();
-    const { name, email, picture } = jwtDecode(res.credential);
-    localStorage.setItem('name', name);
-    localStorage.setItem('email', email);
-    localStorage.setItem('avatar', picture);
-    navigate('/');
-  };
-  const onFailure = (res) => {
-    console.log('Login failed: res:', res);
-  };
+  const navigate = useNavigate();
+  // const clientID =
+  //   '959939122893-efhseqnnogj59ivjcicdkhah0k3r49dk.apps.googleusercontent.com';
+
+  // const onSuccess = (res) => {
+  //   login();
+  //   const { name, email, picture } = jwtDecode(res.credential);
+  //   localStorage.setItem('name', name);
+  //   localStorage.setItem('email', email);
+  //   localStorage.setItem('avatar', picture);
+  //   navigate('/');
+  // };
+  // const onFailure = (res) => {
+  //   console.log('Login failed: res:', res);
+  // };
 
   // const saveSessionData = (userData) => {
   //   localStorage.setItem('userData', JSON.stringify(userData));
   // };
-
-  const handleSuccessfulLogin = (user) => {
-    login();
-    localStorage.setItem('name', user.nickname);
-    localStorage.setItem('email', user.email);
-    localStorage.setItem('id', user.id);
-    localStorage.setItem('creado', user.created_at);
-    localStorage.setItem('avatar', '../rat-king.png');
-    navigate('/');
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,37 +50,27 @@ function Login() {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/v1/users');
-      if (!response.ok) {
-        throw new Error('Error al obtener usuarios');
-      }
-      const users = await response.json();
-      const foundUser = users.find(
-        (user) =>
-          user.email === formData.username &&
-          user.password === formData.password,
+      const response = await axios.post(
+        'http://localhost:3000/api/v1/auth_user',
+        {
+          email: formData.username,
+          password: formData.password,
+        },
       );
 
-      if (foundUser) {
-        handleSuccessfulLogin(foundUser);
-      } else {
-        console.log('Inicio de sesión fallido: Credenciales incorrectas');
-        setFormData({
-          username: '',
-          password: '',
-        });
-      }
+      const { token, user } = response.data;
+      const name = user.last_name
+        ? `${user.first_name} ${user.last_name}`
+        : user.first_name;
+
+      login();
+      localStorage.setItem('token', token);
+      localStorage.setItem('name', name);
+      localStorage.setItem('avatar', '../rat-king.png');
+      navigate('/');
     } catch (error) {
       console.error('Error:', error);
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
   };
 
   return (
@@ -112,7 +101,7 @@ function Login() {
           <h1 className="text-3xl sm:text-2xl font-bold mb-4 mt-2 text-center hidden sm:block">
             Inicia sesión en La RatonerIA
           </h1>
-          <div className="w-h-full flex justify-center">
+          {/* <div className="w-h-full flex justify-center">
             <GoogleOAuthProvider clientId={clientID}>
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
@@ -125,7 +114,7 @@ function Login() {
                 }}
               />
             </GoogleOAuthProvider>
-          </div>
+          </div> */}
           <div className="flex justify-center gap-4 mt-2">
             <div className="text-1 font-bold mb-4 mt-2 text-center hidden sm:block">
               -------------
