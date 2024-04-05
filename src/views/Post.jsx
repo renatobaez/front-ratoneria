@@ -1,13 +1,43 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 function Post() {
+  const [userId] = useState(localStorage.getItem('id'));
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const isSubmit = (data) => console.log(data);
+  const isSubmit = async (data) => {
+    try {
+      const formData = {
+        name: data.name,
+        address: data.address,
+        category_id: data.category_id,
+        image: data.image,
+        id: userId,
+      };
+      console.log(formData);
+      const response = await axios.post(
+        'http://localhost:3000/api/v1/shops',
+        formData,
+      );
+
+      if (response.status === 200) {
+        // Manejar la respuesta exitosa
+        console.log('Local creado exitosamente');
+      } else {
+        // Manejar errores de respuesta
+        console.error('Error al crear el local');
+      }
+    } catch (error) {
+      // Manejar errores de red u otros errores
+      console.error('Error de red:', error);
+    }
+  };
 
   return (
     <div className="flex flex-col w-[50%] text-white mx-auto">
@@ -18,37 +48,57 @@ function Post() {
         >
           <label>Nombre del Local</label>
           <input
-            {...register('nombreLocal', { required: true })}
+            {...register('name', { required: true })}
             className="w-full pr-12 pl-3 py-2 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"
           />
-          {errors.nombreLocal && <span>Campo obligatorio</span>}
+          {errors.name && <span>Campo obligatorio</span>}
 
-          <label>descripcion</label>
+          <label>Direccion</label>
           <input
-            {...register('descripcion', { required: true })}
+            {...register('address', { required: true })}
             className="w-full  pr-12 pl-3 py-2 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"
           />
           {errors.descripcion && <span>Campo obligatorio</span>}
 
-          <label>Categoria</label>
+          <label>Categoría</label>
           <select
-            {...register('categoria', { required: true })}
+            {...register('category_id', { required: true })}
             className="w-[50%] pr-12 pl-3 py-2 bg-black outline-none border focus:border-porange shadow-sm rounded-lg text-white"
           >
-            <option value="">Seleccione una categoria</option>
-            <option value="bar">Bar</option>
-            <option value="Resto">Restaurant</option>
+            <option value="">Seleccione una categoría</option>
+            <option value="1">Bar</option>
+            <option value="2">Restaurant</option>
           </select>
-          {errors.categoria && <span>Seleccione categoria</span>}
+          {errors.categoria && <span>Seleccione una categoría</span>}
 
-          <label>Foto</label>
+          <label>Foto: Ingresar URL de una foto</label>
           <input
-            {...register('foto', { required: true })}
-            type="file"
+            {...register('image', { required: true })}
+            type="text"
             className="w-[50%] pr-12 pl-3 py-2 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"
           />
           {errors.foto && <span>Debe subir una foto</span>}
 
+          <label>Sitio Web : Opcional</label>
+          <input
+            {...register('web', { required: false })}
+            type="text"
+            className="w-[50%] pr-12 pl-3 py-2 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"
+          />
+
+          <label>facebook: Opcional</label>
+          <input
+            {...register('facebook', { required: false })}
+            type="text"
+            className="w-[50%] pr-12 pl-3 py-2 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"
+          />
+
+          <label>instagram: opcional</label>
+          <input
+            {...register('instagram', { required: false })}
+            type="text"
+            className="w-[50%] pr-12 pl-3 py-2 bg-transparent outline-none border focus:border-porange shadow-sm rounded-lg text-white"
+          />
           <div>
             <input
               type="submit"

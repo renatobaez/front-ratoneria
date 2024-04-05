@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 //coment/
 function Tabs({ localId }) {
-  console.log('id desde tabs', localId);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [consumedData, setConsumedData] = useState();
 

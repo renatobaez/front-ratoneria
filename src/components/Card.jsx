@@ -4,7 +4,6 @@ import Star from './Star';
 
 function Card({ id, img, title, rating, category }) {
   const navigate = useNavigate();
-  console.log(id);
 
   const handleClick = () => {
     navigate(`/local/${id}`, id);
