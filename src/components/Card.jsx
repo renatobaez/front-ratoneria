@@ -4,6 +4,7 @@ import Star from './Star';
 
 function Card({ id, img, title, rating, category }) {
   const navigate = useNavigate();
+  console.log(id);
 
   const handleClick = () => {
     navigate(`/local/${id}`, id);
@@ -28,7 +29,7 @@ function Card({ id, img, title, rating, category }) {
           <Star paramRating={rating}></Star>
         </div>
         <div>
-          <Tabs></Tabs>
+          <Tabs localId={id}></Tabs>
         </div>
       </div>
     </div>

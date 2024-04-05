@@ -15,6 +15,7 @@ function Local() {
   });
 
   useEffect(() => {
+    console.log(id);
     const foundLocal = cards.find(
       (card) => card.shop_id.toString() === id.toString(),
     );
@@ -44,7 +45,7 @@ function Local() {
           </div>
           <Star paramRating={local.rating}></Star>
           <div className="mt-10 w-[90%] ">
-            <Tabs />
+            <Tabs localId={id} />
           </div>
         </div>
         <div className="flex flex-col w-[600px] ">
