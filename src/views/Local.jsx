@@ -5,7 +5,7 @@ import Chat from '../components/Chat.jsx';
 import SocialLinks from '../components/ui/Rrss.jsx';
 import Tabs from '../components/Tabs.jsx';
 import Star from '../components/Star.jsx';
-
+//coment()
 function Local() {
   const { cards } = useContext(AppContext);
   const { id } = useParams();
