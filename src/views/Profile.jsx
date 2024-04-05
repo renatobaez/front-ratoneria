@@ -1,9 +1,19 @@
 import Avatar from '../components/Avatar'; // Importa el componente Avatar
-//import Card from '../components/Card'; // Importa el componente Card
+import Card from '../components/Card'; // Importa el componente Card
 import { Link } from 'react-router-dom'; // Importa la función Link
+import { AppContext } from '../context/AppContext';
+import { useContext } from 'react';
 
 function Profile() {
-  // Define el componente Profile
+  const { cards } = useContext(AppContext);
+  //console.log(cards);
+
+  const loggedUser = localStorage.getItem('id');
+  //console.log(loggedUser);
+
+  const userShops = cards.filter((card) => card.user_id === loggedUser);
+  //console.log(userShops);
+
   return (
     <>
       <div className="p-5">
@@ -19,30 +29,19 @@ function Profile() {
         {' '}
         {/* Contenedor principal de las cards */}
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5 p-10">
-          {' '}
-          {/* Grid con diferentes columnas */}
-          <Link to="/">
-            {' '}
-            {/* Enlace al local 2 */}
-            <div className="relative w-full h-full">
-              {' '}
-              {/* Contenedor car */}
-              <p className="text-white">aqui ira la card</p>
-              <div className="absolute bottom-2 left-0 w-full flex justify-center">
-                {' '}
-                {/* Botón de edición */}
-                <Link to="/Post">
-                  {' '}
-                  {/* Enlace a la página de edición, no me resulta, hay que crear la ruta */}
-                  <button className="bg-porange hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
-                    {' '}
-                    {/* Estilo del botón */}
-                    Editar
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </Link>
+          {userShops.map((shop) => (
+            <Link to={`/local/${shop.shop_id}`} key={shop.shop_id}>
+              {/* Enlace a la tienda */}
+              <Card
+                key={shop.shop_id}
+                id={shop.shop_id}
+                title={shop.shop_name}
+                img={shop.image}
+                rating={shop.rating}
+                category={shop.category_id}
+              />
+            </Link>
+          ))}
         </div>
       </div>
     </>

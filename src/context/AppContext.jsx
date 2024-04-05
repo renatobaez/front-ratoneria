@@ -36,7 +36,15 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const addShop = (newShop) => {
+    setCards([...cards, newShop]);
+  };
+
   useEffect(() => {
+    const token = localStorage.getItem('id');
+    if (token) {
+      setIsLoggedIn(true);
+    }
     getShops();
   }, []);
 
@@ -50,6 +58,7 @@ export const AppProvider = ({ children }) => {
         updateCards,
         filters,
         updateFilters,
+        addShop,
       }}
     >
       {children}
